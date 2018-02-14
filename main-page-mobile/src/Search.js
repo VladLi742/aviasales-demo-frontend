@@ -5,6 +5,18 @@ import logo from "./logo.svg";
 import calendar from "./calendar.svg";
 import aero from "./aero.svg";
 import arrow from "./arrow.svg";
+// --------------------------------------- Header -----------------------------------------
+
+// --------------------------------------- TopDestinations -------------------------------
+import compass from "./compass.svg";
+import pencil from "./pencil.svg";
+
+import globe from "./globe.svg";
+import palm from "./palm.svg";
+import bag from "./bag.svg";
+import pantheon from "./pantheon.svg";
+import glass from "./glass.svg";
+import stroller from "./stroller.svg";
 
 export const Header = styled.header`
   width: 320px;
@@ -160,17 +172,195 @@ export const Button = styled.button`
 export const TopDestionations = styled.section`
   width: 320px;
   height: 1784px;
+  padding: 6px;
   background-color: #f8fcff;
 `;
 
-export const Compass = styled.section``;
+export const CompassWrapper = styled.section`
+  width: 64px;
+  height: 64px;
+  margin: 40px 128px 0 112px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2f8ff;
+  border-radius: 50%;
+  box-sizing: border-box;
+`;
 
-export const Title = styled.span``;
+export const Compass = styled.span`
+  display: block;
+  width: 38px;
+  height: 38px;
+  background: url(${compass}) no-repeat center;
+`;
 
-export const TownWrapper = styled.section``;
+export const TitleWrapper = styled.section`
+  width: 288px;
+  height: 72px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-style: Medium, Regular;
+  line-height: 24px;
+  text-align: center;
+  margin: 24px 10px 0 10px;
+  box-sizing: border-box;
+`;
 
-export const Pencil = styled.span``;
+export const TownWrapper = styled.section`
+  color: #00ace2;
+`;
 
-export const CategoryWrapper = styled.section``;
+export const Pencil = styled.button`
+  width: 16px;
+  height: 16px;
+  background: url(${pencil}) no-repeat center;
+  border: none;
+  cursor: pointer;
+`;
 
-export const Category = styled.span``;
+export const CategoryWrapper = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  width: 308px;
+  height: 224px;
+  margin-top: 32px;
+  box-sizing: border-box;
+`;
+
+export const Category = styled.div`
+  width: 82px;
+  height: 102px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &:first-child {
+    margin-right: 30px;
+  }
+
+  &:nth-child(2) {
+    margin-right: 30px;
+  }
+
+  &:nth-child(4) {
+    margin-right: 30px;
+  }
+
+  &:nth-child(5) {
+    margin-right: 30px;
+  }
+
+  & > :first-child {
+    &::after {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      position: relative;
+      top: 13px;
+      left: 12px;
+      background: url(${globe}) no-repeat center;
+    }
+  }
+`;
+
+// import globe from "./globe.svg";
+// import palm from "./palm.svg";
+// import bag from "./bag.svg";
+// import pantheon from "./pantheon.svg";
+// import glass from "./glass.svg";
+// import stroller from "./stroller.svg";
+
+export const CategoryIcon = styled.section`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 4px 16px rgba(74, 74, 74, 0.12);
+`;
+
+export const CategoryTitle = styled.span`
+  display: block;
+  height: 40px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: Regular;
+  line-height: 20px;
+  color: #00ace2;
+  text-align: center;
+`;
+
+export const DestinationCardWrapper = styled.section`
+  margin-top: 40px;
+  width: 308px;
+`;
+
+export const DestinationCard = styled.div`
+  margin-top: 10px;
+  box-shadow: 0 2px 12px rgba(0, 75, 93, 0.12);
+  border-radius: 8px;
+
+  & > :first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+`;
+
+export const DestinationCardDescription = styled.div`
+  height: 72px;
+`;
+
+export const DestinationCardImg = styled.img`
+  border-style: none;
+`;
+
+export const DestinationCardRoute = styled.section`
+  display: inline-grid;
+  width: 150px;
+  height: 50px;
+  margin: 16px 0 36px 16px;
+`;
+
+export const DestinationCardDetails = styled.section`
+  display: inline-grid;
+  width: 118px;
+  height: 20px;
+  margin: 18px 16px 37px 0;
+`;
+
+export const DestinationCardTown = styled.span`
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: left;
+  color: #5b5b5c;
+`;
+
+export const DestinationCardCountry = styled.span`
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: left;
+  color: #a0b0b9;
+`;
+
+export const DestinationCardFindByPrice = styled.a`
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: regular;
+  line-height: 16px;
+  text-align: Right;
+  color: #00bae8;
+`;
+
+export const DestinationCardDate = styled.span`
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: right;
+  color: #a0b0b9;
+`;
