@@ -6,27 +6,27 @@ import articleList from "./article-list.js";
 const Article = styled.article`
   margin-top: 20px;
   background: #ffffff;
-  width: 320px;
   color: #4a4a4a;
-  min-height: 1116px;
   padding: 6px;
 `;
 
-const Name = styled.h3`
+const Title = styled.h3`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   line-height: 18px;
   font-size: 13px;
-
   color: #4a4a4a;
+  padding-left: 22px;
+  margin-top: 0;
+  text-transform: uppercase;
 `;
 
 const Icon = styled.img`
   width: 16px;
   height: 16px;
-  margin-top: 13px;
-  margin-left: 4px;
+  position: relative;
+  top: 21px;
 `;
 
 const Content = styled.section`
@@ -50,8 +50,13 @@ const ReadMore = styled.a`
   font-weight: normal;
   line-height: 20px;
   font-size: 14px;
-
   color: #00ace2;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff9d1b;
+    text-decoration: underline;
+  }
 `;
 
 export default function() {
@@ -59,23 +64,15 @@ export default function() {
     <Article>
       {articleList.map(article => {
         return (
-          <Content>
-            <Row>
-              <Col xs={1}>
-                <Icon src={article.pic} />
-              </Col>
-              <Col xs={11}>
-                <Name>{article.name}</Name>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <Text>
-                  {article.desc}
-                  <ReadMore> Подробнее</ReadMore>
-                </Text>
-              </Col>
-            </Row>
+          <Content key={article.id}>
+            <Icon src={article.pic} />
+            <Title>{article.title}</Title>
+            <Text>
+              {article.desc}
+              <ReadMore href="#" title={article.title}>
+                Подробнее
+              </ReadMore>
+            </Text>
           </Content>
         );
       })}

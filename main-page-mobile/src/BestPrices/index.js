@@ -1,135 +1,85 @@
 import React from "react";
 import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
-import {
-  Body,
-  CalendarWrapper,
-  Title,
-  DirectionWrapper,
-  DirectionTown,
-  DirectionCountry,
-  DirectionFromName,
-  DirectionPrice,
-  CountryFlag,
-  PromoText,
-  PromoStatement
-} from "./style.js";
-import flagRu from "./flag-ru.svg";
-import flagAm from "./flag-am.svg";
-import flagMd from "./flag-md.svg";
+import styled from "styled-components";
+import calendar from "./images/calendar.svg";
+
+import Direction from "./Direction";
+
+const Body = styled.section`
+  background: linear-gradient(to bottom, #f8fcff 0%, #ffffff 100%);
+  color: #4a4a4a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+`;
+
+const Calendar = styled.span`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2f8ff;
+  border-radius: 50%;
+
+  &::after {
+    content: "";
+    width: 28px;
+    height: 28px;
+    background: url(${calendar}) no-repeat center;
+  }
+`;
+
+const Title = styled.span`
+  display: flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 32px 0 33px;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    line-height: 36px;
+    font-size: 24px;
+  }
+`;
+
+const PromoText = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+  font-size: 16px;
+  max-width: 680px;
+  margin: 40px auto 0;
+
+  @media (min-width: 768px) and (max-width: 992px) {
+    line-height: 26px;
+  }
+`;
+
+const PromoStatement = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-bottom: 40px;
+  color: #a0b0b9;
+`;
 
 export default function() {
   return (
     <Body>
-      <CalendarWrapper />
+      <Calendar />
       <Title>Лучшие цены на авиабилеты за последний месяц</Title>
-      <DirectionTown>
-        <CountryFlag src={flagRu} />Симферополь (Крым)
-      </DirectionTown>
-      <DirectionCountry>КРЫМ</DirectionCountry>
-      <DirectionWrapper>
-        <Col xs={8}>
-          <DirectionFromName>Из Москвы</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 4 813 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Санкт-Петербурга</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 7 857 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Новосибирска</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 15 127 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Екатеринбурга</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 9 275 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Челябинска</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 9 148 ₽</DirectionPrice>
-        </Col>
-      </DirectionWrapper>
-      <DirectionTown>
-        <CountryFlag src={flagAm} />Ереван
-      </DirectionTown>
-      <DirectionCountry>АРМЕНИЯ</DirectionCountry>
-      <DirectionWrapper>
-        <Col xs={8}>
-          <DirectionFromName>Из Москвы</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 6 758 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Санкт-Петербурга</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 9 932 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Сочи</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 11 951 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Краснодара</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 11 741 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Ростова-на-Дону</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 11 956 ₽</DirectionPrice>
-        </Col>
-      </DirectionWrapper>
-      <DirectionTown>
-        <CountryFlag src={flagMd} />Кишинёв
-      </DirectionTown>
-      <DirectionCountry>МОЛДАВИЯ</DirectionCountry>
-      <DirectionWrapper>
-        <Col xs={8}>
-          <DirectionFromName>Из Москвы</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 8 319 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Санкт-Петербурга</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 10 800 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Краснодара</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 12 098 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Сургута</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 16 277 ₽</DirectionPrice>
-        </Col>
-        <Col xs={8}>
-          <DirectionFromName>Из Нового Уренгоя</DirectionFromName>
-        </Col>
-        <Col xs={4}>
-          <DirectionPrice>от 15 987 ₽</DirectionPrice>
-        </Col>
-      </DirectionWrapper>
+      <Direction />
+
       <PromoText>
         Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран
         мира. Поиск и сравнение цен на авиабилеты среди 100 агентств и 728

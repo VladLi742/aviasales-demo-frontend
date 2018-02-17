@@ -12,14 +12,8 @@ import pencil from "./images/pencil.svg";
 
 import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 
-import krasnodar from "./images/krasnodar.jpg";
-import sochiAdler from "./images/sochi-adler.jpg";
-import petersburg from "./images/petersburg.jpg";
-import mineralWaters from "./images/mineral-waters.jpg";
-import simferopol from "./images/simferopol.jpg";
-import barcelona from "./images/barcelona.jpg";
-
 import categoryList from "./category-list";
+import Card from "./Card";
 
 const TopDestionations = styled.section`
   min-height: 1784px;
@@ -27,6 +21,7 @@ const TopDestionations = styled.section`
   background-color: #f8fcff;
   display: flex;
   flex-direction: column;
+  padding-bottom: 100px;
 `;
 
 const Compass = styled.section`
@@ -60,6 +55,10 @@ const Title = styled.section`
   text-align: center;
   margin: 24px 10px 0 10px;
   box-sizing: border-box;
+  @media (min-width: 768px) and (max-width: 992px) {
+    line-height: 36px;
+    font-size: 24px;
+  }
 `;
 
 const Town = styled.section`
@@ -83,19 +82,26 @@ const Header = styled.header`
 
 const CategoryWrapper = styled.section`
   display: flex;
+  @media (max-width: 720px) {
+    min-height: 240px;
+  }
+
   flex-wrap: wrap;
-  min-height: 224px;
   margin-top: 32px;
   box-sizing: border-box;
   justify-content: center;
+  min-height: 150px;
 `;
 
 const Category = styled.div`
-  width: 82px;
-  height: 102px;
+  width: 48px;
+  height: 48px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(74, 74, 74, 0.1);
+  border-radius: 50px;
 `;
 
 const IconWrapper = styled.section`
@@ -110,6 +116,7 @@ const Icon = styled.img`
   width: 22px;
   height: 22px;
   position: relative;
+  top: 13px;
 `;
 
 const Name = styled.span`
@@ -121,114 +128,21 @@ const Name = styled.span`
   line-height: 20px;
   color: #00ace2;
   text-align: center;
-`;
-
-const DestinationCardWrapper = styled.section`
-  margin-top: 20px;
-  width: 308px;
-`;
-
-const DestinationCard = styled.div`
-  margin-top: 10px;
-  box-shadow: 0 2px 12px rgba(0, 75, 93, 0.12);
-  border-radius: 8px;
-
-  & > :first-child {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-`;
-
-const DestinationCardDescription = styled.div`
-  height: 72px;
-`;
-
-const DestinationCardImg = styled.img`
-  border-style: none;
-`;
-
-const DestinationCardRoute = styled.section`
-  display: inline-grid;
-  width: 150px;
-  height: 50px;
-  margin: 16px 0 36px 16px;
-`;
-
-const DestinationCardDetails = styled.section`
-  display: inline-grid;
-  width: 118px;
-  height: 20px;
-  margin: 18px 16px 37px 0;
-`;
-
-const DestinationCardTown = styled.span`
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 20px;
-  text-align: left;
-  color: #5b5b5c;
-`;
-
-const DestinationCardCountry = styled.span`
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 20px;
-  text-align: left;
-  color: #a0b0b9;
-`;
-
-const DestinationCardFindByPrice = styled.a`
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: regular;
-  line-height: 16px;
-  text-align: Right;
-  color: #00bae8;
-`;
-
-const DestinationCardDate = styled.span`
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 20px;
-  text-align: right;
-  color: #a0b0b9;
+  margin-top: 35px;
 `;
 
 export default function() {
   return (
     <TopDestionations>
       <Header>
-        <Row>
-          <Col xs={12}>
-            <Compass />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <Title>
-              Популярные направления перелетов из города
-              <Town>
-                Москва <Pencil />
-              </Town>
-            </Title>
-          </Col>
-        </Row>
+        <Compass />
+        <Title>
+          Популярные направления перелетов из города
+          <Town>
+            Москва <Pencil />
+          </Town>
+        </Title>
       </Header>
-      {/* <Row>
-        <Col xs={4}>
-          {categoryList.map(category => {
-            return (
-              <Category>
-                <Icon src={category.pic} />
-                <Name>{category.title}</Name>
-              </Category>
-            );
-          })}
-        </Col>
-      </Row> */}
 
       <CategoryWrapper>
         <Row>
@@ -273,134 +187,7 @@ export default function() {
         </Row>
       </CategoryWrapper>
 
-      {/* <CategoryWrapper>
-<Category>
-        <Icon src={globe}/><Name>КУДА УГОДНО</Name></Category>
-        <Category><Icon src={palm}/><Name>CОЛНЦЕ И МОРЕ<Name><Category>
-        <Category><Icon src={bag}/><Name>ШОПИНГ, ГОРОД<Name><Category>
-        <Category><Icon src={pantheon}/><Name>КУЛЬТУРА И ИСТОРИЯ<Name><Category>
-       <Category> <Icon src={glass}/><Name>НОЧНАЯ ЖИЗНЬ<Name><Category>
-       <Category> <Icon src={stroller}/><Name>ОТДЫХ С ДЕТЬМИ<Name><Category>
-      </CategoryWrapper> */}
-
-      {/* <CategoryWrapper>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>КУДА УГОДНО</CategoryTitle>
-        </Category>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>CОЛНЦЕ И МОРЕ</CategoryTitle>
-        </Category>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>ШОПИНГ, ГОРОД</CategoryTitle>
-        </Category>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>КУЛЬТУРА И ИСТОРИЯ</CategoryTitle>
-        </Category>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>НОЧНАЯ ЖИЗНЬ</CategoryTitle>
-        </Category>
-        <Category>
-          <CategoryIcon />
-          <CategoryTitle>ОТДЫХ С ДЕТЬМИ</CategoryTitle>
-        </Category>
-      </CategoryWrapper> */}
-      <DestinationCardWrapper>
-        <DestinationCard>
-          <DestinationCardImg src={krasnodar} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Краснодар</DestinationCardTown>
-              <DestinationCardCountry>РОССИЯ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 1 212 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>18 марта</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-        <DestinationCard>
-          <DestinationCardImg src={sochiAdler} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Сочи (Адлер)</DestinationCardTown>
-              <DestinationCardCountry>РОССИЯ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 1 334 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>27 марта</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-        <DestinationCard>
-          <DestinationCardImg src={petersburg} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Санкт-Петербург</DestinationCardTown>
-              <DestinationCardCountry>РОССИЯ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 1 508 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>19 февраля</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-        <DestinationCard>
-          <DestinationCardImg src={mineralWaters} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Минеральные Воды</DestinationCardTown>
-              <DestinationCardCountry>РОССИЯ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 2 074 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>13 марта</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-        <DestinationCard>
-          <DestinationCardImg src={simferopol} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Симферополь</DestinationCardTown>
-              <DestinationCardCountry>КРЫМ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 2 407 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>13 марта</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-        <DestinationCard>
-          <DestinationCardImg src={barcelona} width="309" height="176" />
-          <DestinationCardDescription>
-            <DestinationCardRoute>
-              <DestinationCardTown>Барселона</DestinationCardTown>
-              <DestinationCardCountry>ИСПАНИЯ</DestinationCardCountry>
-            </DestinationCardRoute>
-            <DestinationCardDetails>
-              <DestinationCardFindByPrice>
-                Найти от 4 247 ₽
-              </DestinationCardFindByPrice>
-              <DestinationCardDate>24 марта</DestinationCardDate>
-            </DestinationCardDetails>
-          </DestinationCardDescription>
-        </DestinationCard>
-      </DestinationCardWrapper>
+      <Card />
     </TopDestionations>
   );
 }
