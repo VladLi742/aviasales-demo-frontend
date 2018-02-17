@@ -1,5 +1,4 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 import calendar from "./images/calendar.svg";
 
@@ -41,8 +40,9 @@ const Title = styled.span`
   text-align: center;
   margin: 20px 32px 0 33px;
   box-sizing: border-box;
+  color: #4a4a4a;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 36px;
     font-size: 24px;
   }
@@ -54,10 +54,12 @@ const PromoText = styled.p`
   font-weight: normal;
   line-height: 24px;
   font-size: 16px;
-  max-width: 680px;
   margin: 40px auto 0;
+  text-align: center;
+  padding: 2px 10px;
+  box-sizing: border-box;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 26px;
   }
 `;
@@ -71,6 +73,7 @@ const PromoStatement = styled.span`
   margin-top: 25px;
   margin-bottom: 40px;
   color: #a0b0b9;
+  text-align: center;
 `;
 
 export default function() {

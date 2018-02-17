@@ -1,13 +1,16 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
-import articleList from "./article-list.js";
+import list from "./list.js";
 
 const Article = styled.article`
   margin-top: 20px;
   background: #ffffff;
   color: #4a4a4a;
   padding: 6px;
+
+  @media (min-width: 992px) {
+    padding: 5px 22% 30px;
+  }
 `;
 
 const Title = styled.h3`
@@ -62,7 +65,7 @@ const ReadMore = styled.a`
 export default function() {
   return (
     <Article>
-      {articleList.map(article => {
+      {list.map(article => {
         return (
           <Content key={article.id}>
             <Icon src={article.pic} />

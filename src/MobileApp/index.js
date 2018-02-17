@@ -1,5 +1,4 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 
 import raiting from "./images/raiting.svg";
@@ -12,12 +11,7 @@ const Body = styled.section`
   background: linear-gradient(137.4deg, #00b0de 4.18%, #196ebd 104.18%);
   color: #fff;
   padding-top: 24px;
-  height: 350px;
   position: relative;
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    height: 280px;
-  }
 `;
 
 const Title = styled.h3`
@@ -29,12 +23,21 @@ const Title = styled.h3`
   text-align: center;
   margin: 0 12px 0;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 40px;
     font-size: 32px;
     text-align: left;
     margin: 0;
-    margin-right: 30px;
+    margin-right: 45px;
+  }
+
+  @media (min-width: 992px) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    font-size: 32px;
+    margin-top: 55px;
   }
 `;
 
@@ -44,13 +47,19 @@ const Header = styled.header`
   flex-wrap: wrap;
   flex-direction: column;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     padding-left: 260px;
     margin-top: 20px;
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 15%;
   }
 `;
 
 const Raiting = styled.img`
+  width: 70px;
+  height: 10px;
   margin-right: 10px;
 `;
 
@@ -60,37 +69,42 @@ const RaitingTitle = styled.h3`
   font-weight: normal;
   line-height: 20px;
   font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
 `;
 
-const PhoneWrapper = styled.section`
-  height: 209px;
-  position: absolute;
-  bottom: 3px;
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    bottom: 99px;
-  }
-`;
-
-const Icon = styled.img`
+const Phone = styled.img`
   width: 162px;
   height: 213px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    width: 234px;
-    height: 308px;
+  @media (min-width: 768px) {
+    width: 237px;
+    height: 312px;
+  }
+
+  @media (min-width: 992px) {
+    position: absolute;
+    left: 25%;
   }
 `;
 
-const ListOSWrapper = styled.section`
+const ListOS = styled.section`
   display: flex;
   flex-wrap: wrap;
   padding-left: 170px;
-  padding-top: 30px;
+  padding-top: 55px;
+  padding-bottom: 55px;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     padding-left: 260px;
-    padding-top: 0;
+    padding-top: 40px;
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 40%;
   }
 `;
 
@@ -98,10 +112,9 @@ const OS = styled.section`
   display: flex;
   flex-wrap: wrap;
   margin-right: 20px;
+  margin-top: 20px;
 
   @media (min-width: 768px) {
-    height: 24px;
-
     &:nth-child(2)::before {
       content: "";
       position: relative;
@@ -130,29 +143,40 @@ const OSTitle = styled.h3`
   font-weight: normal;
   line-height: 24px;
   font-size: 14px;
-  @media (min-width: 768px) {
-    margin-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
 const Stars = styled.section`
   display: flex;
   justify-content: center;
-  @media (min-width: 768px) and (max-width: 992px) {
+  align-items: baseline;
+  margin-top: 20px;
+
+  @media (min-width: 768px) {
     justify-content: unset;
+  }
+
+  @media (min-width: 992px) {
+    padding-right: 27%;
   }
 `;
 
 const OSIcon = styled.img`
+  width: 18px;
+  height: 23px;
   margin-right: 10px;
 `;
 
 export default function() {
   return (
     <Body>
-      <PhoneWrapper>
-        <Icon src={mobileApp} />
-      </PhoneWrapper>
+      <Phone src={mobileApp} />
       <Header>
         <Title>Скачай мобильное приложение Aviasales.ru</Title>
         <Stars>
@@ -160,7 +184,7 @@ export default function() {
           <RaitingTitle>Более 103 000 оценок</RaitingTitle>
         </Stars>
       </Header>
-      <ListOSWrapper>
+      <ListOS>
         <OS>
           <OSIcon src={apple} />
           <OSTitle>iPhone или iPad</OSTitle>
@@ -173,7 +197,7 @@ export default function() {
           <OSIcon src={winPhone} />
           <OSTitle>Windows Phone</OSTitle>
         </OS>
-      </ListOSWrapper>
+      </ListOS>
     </Body>
   );
 }

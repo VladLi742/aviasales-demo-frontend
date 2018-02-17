@@ -14,8 +14,4 @@ export const Link = styled.a`
   &:hover {
     color: #fd8a27;
   }
-
-  &:last-of-type {
-    margin-bottom: 16px;
-  }
 `;

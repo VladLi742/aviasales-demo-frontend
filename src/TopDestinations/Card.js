@@ -1,24 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
+import { Row, Col } from "react-flexbox-grid";
 
 import cardList from "./card-list";
 
 const Card = styled.section`
-  width: 308px;
   min-height: 126px;
   margin-top: 10px;
   box-shadow: 0 2px 12px rgba(0, 75, 93, 0.12);
   border-radius: 8px;
+  cursor: pointer;
 
   & > :first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
-    min-width: 624px;
-    min-height: 293px;
+  @media (min-width: 768px) {
+    width: 509px;
+  }
+
+  @media (min-width: 992px) {
+    min-width: 509px;
+    margin-right: 15px;
+    margin: 0 7.5px 30px;
+  }
+
+  &:hover {
+    box-shadow: 0 10px 20px 0 rgba(91, 137, 163, 0.2);
   }
 `;
 
@@ -26,37 +35,40 @@ const Cards = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 992px) {
+    margin: 0 200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const Description = styled.div`
   display: flex;
   justify-content: space-between;
-  @media (max-width: 768px) {
-    height: 72px;
-  }
 `;
 
 const Image = styled.img`
   border-style: none;
-
-  @media (max-width: 320px) {
-    max-width: 308px;
-    height: 126px;
-  }
+  width: 100%;
+  min-height: 126px;
 `;
 
 const Route = styled.section`
-  display: inline-grid;
+  display: flex;
+  flex-direction: column;
   min-width: 150px;
   height: 50px;
-  margin: 16px 0 36px 16px;
+  margin: 12px;
 `;
 
 const Details = styled.section`
-  display: inline-grid;
+  display: flex;
+  flex-direction: column;
   min-width: 118px;
   height: 20px;
-  margin: 18px 16px 37px 0;
+  margin: 12px;
 `;
 
 const Town = styled.span`
@@ -67,7 +79,7 @@ const Town = styled.span`
   text-align: left;
   color: #5b5b5c;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 992px) {
     line-height: 32px;
     font-size: 22px;
   }
@@ -90,7 +102,7 @@ const FindByPrice = styled.a`
   text-align: Right;
   color: #00bae8;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 992px) {
     line-height: 32px;
     font-size: 22px;
   }

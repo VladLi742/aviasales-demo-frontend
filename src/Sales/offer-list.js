@@ -23,7 +23,7 @@ export default [
   },
   {
     id: 3,
-    name: "В Лос-Анджелес от…",
+    name: "В Лос-Анджелес от 20 360 ₽",
     logo: logo,
     pic: lufthansa,
     price: "20 360 ₽",

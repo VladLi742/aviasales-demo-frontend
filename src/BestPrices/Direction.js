@@ -1,32 +1,26 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 
-import flagRu from "./images/flag-ru.svg";
-import flagAm from "./images/flag-am.svg";
-import flagMd from "./images/flag-md.svg";
+import flagRu from "./images/flag-ru.png";
+import flagAm from "./images/flag-am.png";
+import flagMd from "./images/flag-md.png";
 
 import simferopolList from "./simferopol-list";
 import yerevanList from "./yerevan-list";
 import kishinevList from "./kishinev-list";
 
-const Direction = styled.section`
-  min-height: 130px;
+const Directions = styled.section`
+  width: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
   padding: 6px;
   flex-wrap: wrap;
-  @media (min-width: 768px) and (max-width: 992px) {
+  justify-content: center;
+
+  @media (min-width: 768px) {
     width: 90%;
   }
-`;
-
-const Flag = styled.img`
-  width: 30px;
-  height: 30px;
-  position: relative;
-  top: 15px;
 `;
 
 const Town = styled.div`
@@ -39,6 +33,9 @@ const Town = styled.div`
   margin-top: 20px;
   height: 60px;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 const Country = styled.span`
@@ -50,8 +47,6 @@ const Country = styled.span`
   font-size: 12px;
   color: #a0b0b9;
   justify-content: left;
-  position: relative;
-  left: 30px;
 `;
 
 const From = styled.span`
@@ -62,6 +57,10 @@ const From = styled.span`
   line-height: 20px;
   text-align: left;
   justify-content: left;
+
+  &:hover {
+    color: #ff8b00;
+  }
 `;
 
 const Price = styled.span`
@@ -79,54 +78,89 @@ const Place = styled.section`
   justify-content: space-between;
   width: 100%;
   margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f1fcff;
+
+    ${From} {
+      color: #ff8b00;
+      text-decoration: underline;
+    }
+  }
 `;
 
 const Places = styled.section`
   width: 100%;
 `;
 
+const Direction = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (min-width: 992px) {
+    width: 300px;
+    margin-right: 45px;
+  }
+`;
+
 export default function() {
   return (
-    <Direction>
-      <Town>
-        <Flag src={flagRu} />Симферополь (Крым)<Country>КРЫМ</Country>
-      </Town>
-      <Places>
-        {simferopolList.map(place => {
-          return (
-            <Place key={place.id}>
-              <From>Из {place.town}</From>
-              <Price>От {place.price}</Price>
-            </Place>
-          );
-        })}
-      </Places>
-      <Town>
-        <Flag src={flagAm} />Ереван<Country>АРМЕНИЯ</Country>
-      </Town>
-      <Places>
-        {yerevanList.map(place => {
-          return (
-            <Place key={place.id}>
-              <From>Из {place.town}</From>
-              <Price>От {place.price}</Price>
-            </Place>
-          );
-        })}
-      </Places>
-      <Town>
-        <Flag src={flagMd} />Кишинёв<Country>МОЛДАВИЯ</Country>
-      </Town>
-      <Places>
-        {kishinevList.map(place => {
-          return (
-            <Place key={place.id}>
-              <From>Из {place.town}</From>
-              <Price>От {place.price}</Price>
-            </Place>
-          );
-        })}
-      </Places>
-    </Direction>
+    <Directions>
+      <Direction>
+        <Town>
+          <img src={flagRu} alt="Симферополь (Крым)" />Симферополь (Крым)<Country
+          >
+            КРЫМ
+          </Country>
+        </Town>
+        <Places>
+          {simferopolList.map(place => {
+            return (
+              <Place key={place.id}>
+                <From>Из {place.town}</From>
+                <Price>От {place.price}</Price>
+              </Place>
+            );
+          })}
+        </Places>
+      </Direction>
+      <Direction>
+        <Town>
+          <img src={flagAm} alt="Ереван (Армения)" />Ереван<Country>
+            АРМЕНИЯ
+          </Country>
+        </Town>
+        <Places>
+          {yerevanList.map(place => {
+            return (
+              <Place key={place.id}>
+                <From>Из {place.town}</From>
+                <Price>От {place.price}</Price>
+              </Place>
+            );
+          })}
+        </Places>
+      </Direction>
+      <Direction>
+        <Town>
+          <img src={flagMd} alt="Кишинёв (Молдавия)" />Кишинёв<Country>
+            МОЛДАВИЯ
+          </Country>
+        </Town>
+        <Places>
+          {kishinevList.map(place => {
+            return (
+              <Place key={place.id}>
+                <From>Из {place.town}</From>
+                <Price>От {place.price}</Price>
+              </Place>
+            );
+          })}
+        </Places>
+      </Direction>
+    </Directions>
   );
 }

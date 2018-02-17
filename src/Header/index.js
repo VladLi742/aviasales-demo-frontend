@@ -1,16 +1,13 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 
-import logo from "./logo.svg";
-
-import calendar from "./calendar.svg";
-import aero from "./aero.svg";
-import arrow from "./arrow.svg";
+import logo from "./images/logo.svg";
+import calendar from "./images/calendar.svg";
+import aero from "./images/aero.svg";
+import arrow from "./images/arrow.svg";
+import arrowBottom from "./images/arrow-bottom.svg";
 
 const Header = styled.header`
-  min-height: 518px;
-  width: 100%;
   background: linear-gradient(
     148.48deg,
     #00b0de 22.46%,
@@ -22,6 +19,11 @@ const Header = styled.header`
   );
   padding: 6px;
   box-sizing: border-box;
+
+  @media (min-width: 992px) {
+    padding-left: 98px;
+    padding-right: 98px;
+  }
 `;
 
 const Logo = styled.img`
@@ -35,38 +37,43 @@ const LogoWrapper = styled.section`
 `;
 
 const Title = styled.h1`
-      display: none;
-      margin-right: 12px;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      line-height: 25px;
-      font-size: 20px;
-
-      color: #fff;
-  @media (min-width: 768px) and (max-width: 992px) {
+  display: none;
+  margin-right: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 25px;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 10px;
+      
+  @media (min-width: 768px) {
       display: block;
     }
   }
 `;
 
-const Promo = styled.span`
-display: none;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-line-height: normal;
-font-size: 20px;
-text-align: center;
+const PromoText = styled.span`
+  display: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 20px;
+  text-align: center;
+  color: #FFF;
 
-color: #FFF;
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
       display: block;
     }
   }
+
+  @media (min-width: 992px) {
+    font-size: 24px;
+  }
 `;
 
-const H2 = styled.h2`
+const PromoHead = styled.h2`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -75,15 +82,21 @@ const H2 = styled.h2`
   text-align: center;
   color: #fff;
   margin-top: 47px;
+  margin-bottom: 0;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 48px;
     font-size: 32px;
-    margin-bottom: 8px;
+    margin-top: 83px;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 40px;
+    margin-top: 215px;
   }
 `;
 
-const Form = styled.section`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -94,7 +107,7 @@ const Form = styled.section`
   color: #4a4a4a;
   margin-top: 30px;
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     width: 85%;
     margin-left: auto;
     margin-right: auto;
@@ -105,21 +118,19 @@ const Form = styled.section`
 
 const Field = styled.section`
   display: flex;
-  height: 56px;
   margin-top: 3px;
 
-  &:nth-last-child(2) > :first-child {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     width: 45%;
     margin-right: 2px;
   }
+
+  @media (min-width: 992px) {
+    width: 22.5%;
+  }
 `;
 
-const DateWrapper = styled.section`
+const Dates = styled.section`
   width: 100%;
 
   &:first-child {
@@ -131,7 +142,8 @@ const CityWrapper = styled.section`
   padding: 18px 16px;
   background-color: white;
   border-top-right-radius: 4%;
-  @media (min-width: 768px) and (max-width: 992px) {
+
+  @media (min-width: 768px) {
     border-top-right-radius: 0;
   }
 `;
@@ -139,7 +151,6 @@ const CityWrapper = styled.section`
 const Input = styled.input`
   width: 100%;
   padding: 18px 0 18px 16px;
-
   overflow: hidden;
   border: inherit;
   box-sizing: border-box;
@@ -160,19 +171,31 @@ const DateField = Input.extend`
 `;
 
 const City = styled.span`
-  min-width: 16px;
-  height: 20px;
   color: #a0b0b9;
 `;
 
-const Select = Input.withComponent("select");
-
-const SelectPlace = Select.extend`
+const SelectPlace = styled.button`
+  width: 100%;
+  padding: 18px 0 18px 16px;
+  overflow: hidden;
+  border: inherit;
+  box-sizing: border-box;
   cursor: pointer;
+  background: white;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+`;
+
+const DropDownArrow = styled.img`
+  width: 10px;
+  height: 5px;
+  position: relative;
+  left: 50px;
+  bottom: 3px;
 `;
 
 const ChangeButton = styled.button`
-  min-width: 16px;
+  width: 16px;
   height: 18px;
   border: none;
   background: url(${arrow}) no-repeat center;
@@ -182,34 +205,53 @@ const ChangeButton = styled.button`
 
 const Button = styled.button`
   width: 100%;
-  height: 56px;
-  font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  line-height: 28px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  font-size: 28px;
   background-color: #ff9241;
   color: #fff;
   margin-top: 15px;
   border: none;
   border-radius: 4px;
-  display: flex;
-  justify-content: center;
   cursor: pointer;
+  margin-bottom: 88px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  position: relative;
 
   &::after {
     content: "";
+    display: block;
     width: 26px;
     height: 21px;
     background: url(${aero}) no-repeat center;
-    background-size: cover;
-    color: transparent;
-    position: relative;
-    top: 4px;
-    left: 16px;
+    position: absolute;
+    top: 21px;
+    right: 30px;
   }
 
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     width: 50%;
+    font-size: 28px;
+    margin-bottom: 120px;
   }
+
+  @media (min-width: 992px) {
+    width: 23%;
+    font-size: 28px;
+    margin-bottom: 255px;
+  }
+`;
+
+const Type = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 16px;
+  color: #a0b0b9;
 `;
 
 export default function() {
@@ -219,8 +261,8 @@ export default function() {
         <Logo src={logo} alt="aviasales" width="30px;" height="29px;" />
         <Title>aviasales</Title>
       </LogoWrapper>
-      <H2>Поиск дешевых авиабилетов</H2>
-      <Promo>Лучший способ купить авиабилеты дешево</Promo>
+      <PromoHead>Поиск дешевых авиабилетов</PromoHead>
+      <PromoText>Лучший способ купить авиабилеты дешево</PromoText>
       <Form>
         <Field>
           <TextInput placeholder="Город вылета" />
@@ -233,16 +275,17 @@ export default function() {
           <TextInput placeholder="Город прибытия" />
         </Field>
         <Field>
-          <DateWrapper>
+          <Dates>
             <DateField placeholder="Туда" />
-          </DateWrapper>
-          <DateWrapper>
+          </Dates>
+          <Dates>
             <DateField placeholder="Обратно" />
-          </DateWrapper>
+          </Dates>
         </Field>
         <Field>
           <SelectPlace>
-            <option value="">1 пассажир, эконом</option>
+            1 пассажир, <Type>эконом</Type>
+            <DropDownArrow src={arrowBottom} />
           </SelectPlace>
         </Field>
         <Button>Найти билеты</Button>

@@ -1,5 +1,4 @@
 import React from "react";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 
 import offerList from "./offer-list";
@@ -7,9 +6,15 @@ import offerList from "./offer-list";
 const Body = styled.section`
   background: linear-gradient(to right, #00b0de 0%, #196ebd 100%);
   color: #000;
-  padding: 6px;
   padding-top: 5px;
   padding-bottom: 20px;
+
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 23% 30px;
+  }
 `;
 
 const Title = styled.h2`
@@ -19,39 +24,50 @@ const Title = styled.h2`
   line-height: 33px;
   text-align: left;
   color: #fff;
-  padding-left: 6px;
-  @media (min-width: 768px) and (max-width: 992px) {
+  padding-left: 7px;
+  display: flex;
+  align-self: baseline;
+
+  @media (min-width: 768px) {
     line-height: 42px;
   }
 `;
 
 const Offer = styled.section`
-  min-height: 134px;
   text-align: left;
   margin-left: 6px;
   margin-right: 6px;
-  display: flex;
   margin-top: 10px;
-  flex-wrap: wrap;
-  @media (min-width: 768px) and (max-width: 992px) {
-    width: 45%;
+
+  @media (min-width: 768px) {
+    width: 240px;
+  }
+
+  @media (min-width: 992px) {
+    width: 32%;
   }
 `;
 
 const Offers = styled.section`
-  @media (min-width: 768px) and (max-width: 992px) {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 
 const Header = styled.section`
   width: 100%;
   background-color: #cd2027;
-  min-height: 63px;
-  padding: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 22px 32px 21px 16px;
+  box-sizing: border-box;
 `;
 
 const Name = styled.span`
@@ -61,12 +77,15 @@ const Name = styled.span`
   line-height: 20px;
   text-align: left;
   color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const Main = styled.section`
   background-color: white;
   width: 100%;
-  min-height: 207px;
+  min-height: 240px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -100,7 +119,6 @@ const Price = styled.span`
   line-height: 16px;
   font-size: 20px;
   text-align: right;
-
   color: #5c5c5c;
 `;
 
@@ -112,7 +130,6 @@ const RemainDays = styled.span`
   font-size: 12px;
   text-align: right;
   margin-top: 10px;
-
   color: #d93633;
 `;
 
@@ -132,7 +149,6 @@ const Description = styled.p`
     font-weight: normal;
     line-height: 16px;
     font-size: 12px;
-
     color: #242424;
   }
 `;
@@ -171,10 +187,6 @@ const AllOffers = styled.a`
   &:hover {
     color: #ff9d1b;
   }
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    text-align: left;
-  }
 `;
 
 const AveragePriceInfo = styled.span`
@@ -185,17 +197,18 @@ const AveragePriceInfo = styled.span`
   font-size: 16px;
   text-align: center;
   color: #fff;
-
-  @media (min-width: 768px) and (max-width: 992px) {
-    text-align: right;
-  }
 `;
 
 const Notes = styled.section`
   margin-top: 20px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
+  padding: 7px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    width: 100%;
+    padding: 0 12px;
+    justify-content: space-between;
+  }
 `;
 const Content = styled.section`
   display: flex;
@@ -235,13 +248,13 @@ export default function() {
             </Offer>
           );
         })}
+        <Notes>
+          <AllOffers href="#" title="Все спецпредложения авиакомпаний">
+            Смотреть все спецпредложения
+          </AllOffers>
+          <AveragePriceInfo>* средняя цена по направлению</AveragePriceInfo>
+        </Notes>
       </Offers>
-      <Notes>
-        <AllOffers href="#" title="Все спецпредложения авиакомпаний">
-          Смотреть все спецпредложения
-        </AllOffers>
-        <AveragePriceInfo>* средняя цена по направлению</AveragePriceInfo>
-      </Notes>
     </Body>
   );
 }

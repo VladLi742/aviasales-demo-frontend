@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
 import { Link } from "./style";
 
 import linkList from "./inner-list";
@@ -11,7 +10,17 @@ const List = styled.ul`
   margin-top: 12px;
   text-align: left;
   border-bottom: 1px solid #e0e6e8;
+  margin-top: 32px;
   margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+  }
+
+  @media (min-width: 992px) {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 `;
 
 const Links = styled.li`
@@ -24,7 +33,7 @@ const Links = styled.li`
   @media (min-width: 768px) {
     width: 25%;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     width: 16.66%;
   }
 `;
@@ -36,6 +45,7 @@ const Title = styled.h4`
   font-size: 12px;
   font-weight: 600;
   color: #4a4a4a;
+  margin-top: 0;
 `;
 
 const AllLinks = styled.a`
@@ -55,10 +65,10 @@ export default function() {
         return (
           <Links key={link.id}>
             <Title>{link.town}</Title>
-            {link.links.map((link, index) => {
+            {link.titles.map((title, index) => {
               return (
                 <Link href="#" key={index}>
-                  {link}
+                  {title}
                 </Link>
               );
             })}

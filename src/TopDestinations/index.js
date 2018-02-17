@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+
+import compass from "./images/compass.svg";
+import pencil from "./images/pencil.svg";
+
 import globe from "./images/globe.svg";
 import palm from "./images/palm.svg";
 import bag from "./images/bag.svg";
@@ -7,16 +11,9 @@ import pantheon from "./images/pantheon.svg";
 import glass from "./images/glass.svg";
 import stroller from "./images/stroller.svg";
 
-import compass from "./images/compass.svg";
-import pencil from "./images/pencil.svg";
-
-import reactFlexboxGrid, { Row, Col } from "react-flexbox-grid";
-
-import categoryList from "./category-list";
 import Card from "./Card";
 
 const TopDestionations = styled.section`
-  min-height: 1784px;
   padding: 6px;
   background-color: #f8fcff;
   display: flex;
@@ -42,11 +39,13 @@ const Compass = styled.section`
     height: 38px;
     background: url(${compass}) no-repeat center;
   }
+
+  @media (min-width: 768px) {
+    margin-top: 56px;
+  }
 `;
 
 const Title = styled.section`
-  min-width: 288px;
-  height: 72px;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -55,7 +54,8 @@ const Title = styled.section`
   text-align: center;
   margin: 24px 10px 0 10px;
   box-sizing: border-box;
-  @media (min-width: 768px) and (max-width: 992px) {
+
+  @media (min-width: 992px) {
     line-height: 36px;
     font-size: 24px;
   }
@@ -63,6 +63,10 @@ const Title = styled.section`
 
 const Town = styled.section`
   color: #00ace2;
+
+  &:hover {
+    color: #ff8b00;
+  }
 `;
 
 const Pencil = styled.button`
@@ -80,17 +84,23 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const CategoryWrapper = styled.section`
+const Categories = styled.section`
   display: flex;
-  @media (max-width: 720px) {
-    min-height: 240px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: center;
+  margin-top: 32px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    width: 75%;
   }
 
-  flex-wrap: wrap;
-  margin-top: 32px;
-  box-sizing: border-box;
-  justify-content: center;
-  min-height: 150px;
+  @media (min-width: 992px) {
+    justify-content: space-around;
+    width: 45%;
+  }
 `;
 
 const Category = styled.div`
@@ -102,14 +112,16 @@ const Category = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(74, 74, 74, 0.1);
   border-radius: 50px;
-`;
 
-const IconWrapper = styled.section`
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: white;
-  box-shadow: 0 4px 16px rgba(74, 74, 74, 0.12);
+  &:nth-child(2n) {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  &:last-child {
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 const Icon = styled.img`
@@ -117,11 +129,11 @@ const Icon = styled.img`
   height: 22px;
   position: relative;
   top: 13px;
+  border-radius: 5px;
 `;
 
 const Name = styled.span`
   display: block;
-  height: 40px;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-style: Regular;
@@ -129,6 +141,16 @@ const Name = styled.span`
   color: #00ace2;
   text-align: center;
   margin-top: 35px;
+`;
+
+const FirstLine = styled.section`
+  display: flex;
+  margin-bottom: 60px;
+`;
+
+const SecondLine = styled.section`
+  display: flex;
+  margin-bottom: 100px;
 `;
 
 export default function() {
@@ -144,48 +166,36 @@ export default function() {
         </Title>
       </Header>
 
-      <CategoryWrapper>
-        <Row>
-          <Col xs={4}>
-            <Category>
-              <Icon src={globe} />
-              <Name>КУДА УГОДНО</Name>
-            </Category>
-          </Col>
-          <Col xs={4}>
-            <Category>
-              <Icon src={palm} />
-              <Name>CОЛНЦЕ И МОРЕ</Name>
-            </Category>
-          </Col>
-          <Col xs={4}>
-            <Category>
-              <Icon src={bag} />
-              <Name>ШОПИНГ, ГОРОД</Name>
-            </Category>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}>
-            <Category>
-              <Icon src={pantheon} />
-              <Name>КУЛЬТУРА И ИСТОРИЯ</Name>
-            </Category>
-          </Col>
-          <Col xs={4}>
-            <Category>
-              <Icon src={glass} />
-              <Name>НОЧНАЯ ЖИЗНЬ</Name>
-            </Category>
-          </Col>
-          <Col xs={4}>
-            <Category>
-              <Icon src={stroller} />
-              <Name>ОТДЫХ С ДЕТЬМИ</Name>
-            </Category>
-          </Col>
-        </Row>
-      </CategoryWrapper>
+      <Categories>
+        <FirstLine>
+          <Category>
+            <Icon src={globe} />
+            <Name>КУДА УГОДНО</Name>
+          </Category>
+          <Category>
+            <Icon src={palm} />
+            <Name>CОЛНЦЕ И МОРЕ</Name>
+          </Category>
+          <Category>
+            <Icon src={bag} />
+            <Name>ШОПИНГ, ГОРОД</Name>
+          </Category>
+        </FirstLine>
+        <SecondLine>
+          <Category>
+            <Icon src={pantheon} />
+            <Name>КУЛЬТУРА И ИСТОРИЯ</Name>
+          </Category>
+          <Category>
+            <Icon src={glass} />
+            <Name>НОЧНАЯ ЖИЗНЬ</Name>
+          </Category>
+          <Category>
+            <Icon src={stroller} />
+            <Name>ОТДЫХ С ДЕТЬМИ</Name>
+          </Category>
+        </SecondLine>
+      </Categories>
 
       <Card />
     </TopDestionations>
