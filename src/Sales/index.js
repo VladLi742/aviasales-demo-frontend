@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import offerList from "./offer-list";
+import list from "./list";
 
 const Body = styled.section`
   background: linear-gradient(to right, #00b0de 0%, #196ebd 100%);
@@ -9,11 +9,15 @@ const Body = styled.section`
   padding-top: 5px;
   padding-bottom: 20px;
 
+  @media (min-width: 768px) {
+    padding: 5px 10px 20px;
+  }
+
   @media (min-width: 992px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px 23% 30px;
+    padding: 5px 205px 30px;
   }
 `;
 
@@ -30,21 +34,28 @@ const Title = styled.h2`
 
   @media (min-width: 768px) {
     line-height: 42px;
+    padding-left: 0;
   }
 `;
 
 const Offer = styled.section`
-  text-align: left;
-  margin-left: 6px;
-  margin-right: 6px;
-  margin-top: 10px;
+  margin-bottom: 6px;
 
   @media (min-width: 768px) {
-    width: 240px;
+    &:nth-child(2) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
   }
 
   @media (min-width: 992px) {
-    width: 32%;
+    width: 297px;
+    height: 270px;
+
+    &:nth-child(2) {
+      margin-left: 70px;
+      margin-right: 70px;
+    }
   }
 `;
 
@@ -54,20 +65,25 @@ const Offers = styled.section`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  padding-left: 6px;
+  padding-right: 6px;
 
   @media (min-width: 768px) {
+    padding-left: 0;
+    padding-right: 0;
+    flex-wrap: nowrap;
     flex-direction: row;
   }
 `;
 
 const Header = styled.section`
-  width: 100%;
   background-color: #cd2027;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 32px 21px 16px;
+  padding: 22px 15px 21px 16px;
   box-sizing: border-box;
+  min-height: 76px;
 `;
 
 const Name = styled.span`
@@ -84,15 +100,14 @@ const Name = styled.span`
 
 const Main = styled.section`
   background-color: white;
-  width: 100%;
-  min-height: 240px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
 `;
 
 const CompanyLogo = styled.img`
-  height: 30px;
+  width: 100px;
+  height: 25px;
 `;
 
 const PriceWrapper = styled.section`
@@ -112,6 +127,7 @@ const FromPrice = styled.span`
   color: #5c5c5c;
   margin-right: 3px;
 `;
+
 const Price = styled.span`
   font-family: Roboto;
   font-style: normal;
@@ -165,7 +181,6 @@ const ReadMore = styled.button`
   text-align: center;
   margin: 22px 8px 20px;
   width: 100%;
-  height: 40px;
   cursor: pointer;
   color: #d93533;
 
@@ -202,59 +217,71 @@ const AveragePriceInfo = styled.span`
 const Notes = styled.section`
   margin-top: 20px;
   padding: 7px;
+  text-align: center;
 
   @media (min-width: 768px) {
     display: flex;
     width: 100%;
-    padding: 0 12px;
+    padding: 0;
     justify-content: space-between;
+    margin-top: 45px;
   }
 `;
+
 const Content = styled.section`
   display: flex;
   margin-top: 20px;
   margin-left: 8px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    margin-bottom: 15px;
+  }
 `;
+
+const Wrapper = styled.section``;
 
 export default function() {
   return (
     <Body>
-      <Title>Спецпредложения на авиабилеты</Title>
-      <Offers>
-        {offerList.map(offer => {
-          return (
-            <Offer key={offer.id}>
-              <Header>
-                <Name>{offer.name}</Name>
-                <img src={offer.logo} />
-              </Header>
-              <Main>
-                <Content>
-                  <CompanyLogo src={offer.pic} />
-                  <PriceWrapper>
-                    <Price>
-                      <FromPrice>от </FromPrice>
-                      {offer.price}
-                    </Price>
-                    <RemainDays>Осталось {offer.days}</RemainDays>
-                  </PriceWrapper>
-                </Content>
-                <Description>
+      <Wrapper>
+        <Title>Спецпредложения на авиабилеты</Title>
+        <Offers>
+          {list.map(offer => {
+            return (
+              <Offer key={offer.id}>
+                <Header>
                   <Name>{offer.name}</Name>
-                  {offer.promoText}
-                </Description>
-                <ReadMore title={offer.name}>Узнать подробности</ReadMore>
-              </Main>
-            </Offer>
-          );
-        })}
+                  <img src={offer.logo} />
+                </Header>
+                <Main>
+                  <Content>
+                    <CompanyLogo src={offer.pic} />
+                    <PriceWrapper>
+                      <Price>
+                        <FromPrice>от </FromPrice>
+                        {offer.price}
+                      </Price>
+                      <RemainDays>Осталось {offer.days}</RemainDays>
+                    </PriceWrapper>
+                  </Content>
+                  <Description>
+                    <Name>{offer.name}</Name>
+                    {offer.promoText}
+                  </Description>
+                  <ReadMore title={offer.name}>Узнать подробности</ReadMore>
+                </Main>
+              </Offer>
+            );
+          })}
+        </Offers>
         <Notes>
           <AllOffers href="#" title="Все спецпредложения авиакомпаний">
             Смотреть все спецпредложения
           </AllOffers>
           <AveragePriceInfo>* средняя цена по направлению</AveragePriceInfo>
         </Notes>
-      </Offers>
+      </Wrapper>
     </Body>
   );
 }

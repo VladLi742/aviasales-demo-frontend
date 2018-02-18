@@ -99,7 +99,7 @@ const Categories = styled.section`
 
   @media (min-width: 992px) {
     justify-content: space-around;
-    width: 45%;
+    width: 40%;
   }
 `;
 

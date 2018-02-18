@@ -16,12 +16,7 @@ const Card = styled.section`
     border-top-right-radius: 8px;
   }
 
-  @media (min-width: 768px) {
-    width: 509px;
-  }
-
   @media (min-width: 992px) {
-    min-width: 509px;
     margin-right: 15px;
     margin: 0 7.5px 30px;
   }
@@ -53,6 +48,8 @@ const Image = styled.img`
   border-style: none;
   width: 100%;
   min-height: 126px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `;
 
 const Route = styled.section`

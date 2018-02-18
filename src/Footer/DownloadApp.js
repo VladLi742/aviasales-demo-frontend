@@ -32,7 +32,15 @@ const Copyright = styled.span`
   margin-top: 25px;
   color: #5b5b5c;
   margin-bottom: 20px;
-  text-align: right;
+  text-align: center;
+
+  @media (min-width: 762px) {
+    text-align: left;
+  }
+
+  @media (min-width: 992px) {
+    text-align: right;
+  }
 `;
 
 export default function() {

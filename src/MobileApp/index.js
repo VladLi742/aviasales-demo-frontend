@@ -12,6 +12,12 @@ const Body = styled.section`
   color: #fff;
   padding-top: 24px;
   position: relative;
+
+  @media (min-width: 992px) {
+    padding-top: 0;
+    padding-left: 40%;
+    min-height: 300px;
+  }
 `;
 
 const Title = styled.h3`
@@ -54,6 +60,9 @@ const Header = styled.header`
 
   @media (min-width: 992px) {
     padding-left: 15%;
+    padding-left: 0;
+    margin-top: 0;
+    align-items: baseline;
   }
 `;
 
@@ -104,7 +113,9 @@ const ListOS = styled.section`
   }
 
   @media (min-width: 992px) {
-    padding-left: 40%;
+    padding-left: 0;
+    padding-top: 0;
+    padding-left: 0;
   }
 `;
 
@@ -163,7 +174,8 @@ const Stars = styled.section`
   }
 
   @media (min-width: 992px) {
-    padding-right: 27%;
+    justify-content: center;
+    padding-right: 29%;
   }
 `;
 

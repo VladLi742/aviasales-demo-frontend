@@ -4,7 +4,7 @@ import "normalize.css";
 import Header from "./Header/";
 import TopDestionations from "./TopDestinations/";
 import BestPrices from "./BestPrices/";
-// import Discounts from "./Discounts/"; // Не доделан
+import Discounts from "./Discounts/";
 import Sales from "./Sales/";
 import Articles from "./Articles/";
 import MobileApp from "./MobileApp/";
@@ -17,7 +17,7 @@ class App extends Component {
         <Header />
         <TopDestionations />
         <BestPrices />
-        {/* <Discounts /> */}
+        <Discounts />
         <Sales />
         <Articles />
         <MobileApp />

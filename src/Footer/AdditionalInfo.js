@@ -33,6 +33,7 @@ const Icon = styled.img`
 const Body = styled.section`
   margin: 0;
   margin-bottom: 5px;
+  margin-left: 6px;
 
   @media (min-width: 992px) {
     padding: 0 20%;

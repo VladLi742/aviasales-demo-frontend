@@ -2,15 +2,15 @@ import React from "react";
 
 import styled from "styled-components";
 
-import topLine from "./images/top-line.jpg";
+import topLine from "./top-line.jpg";
 
-import twitter from "./images/twitter.svg";
-import facebook from "./images/facebook.svg";
-import vk from "./images/vk.svg";
-import rss from "./images/rss.svg";
+import twitter from "./twitter.svg";
+import facebook from "./facebook.svg";
+import vk from "./vk.svg";
+import rss from "./rss.svg";
 
 const Wrapper = styled.section`
-  display: none;
+  display: flex;
   position: relative;
   justify-content: center;
   padding-top: 35px;
@@ -27,14 +27,8 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 768px) {
-    display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  @media (min-width: 992px) {
-    flex-wrap: wrap;
-    flex-direction: row;
   }
 `;
 
@@ -46,10 +40,9 @@ const Title = styled.span`
   font-size: 16px;
   text-align: left;
   color: #5c5c5c;
-  margin-bottom: 5px;
 
-  @media (min-width: 992px) {
-    margin-bottom: 0;
+  @media (min-width: 768px) {
+    margin-bottom: 5px;
   }
 `;
 
@@ -78,7 +71,6 @@ const FirstBlock = styled.section`
 
   @media (min-width: 992px) {
     margin-bottom: 0;
-    align-items: left;
   }
 `;
 
@@ -90,7 +82,7 @@ const SecondBLock = styled.section`
 
   @media (min-width: 992px) {
     flex-direction: row;
-    width: 32%;
+    width: 100%;
   }
 `;
 
