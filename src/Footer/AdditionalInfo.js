@@ -12,16 +12,14 @@ import DownloadApp from "./DownloadApp";
 
 const LinkWrapper = styled.section`
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
 `;
 
 const AdditionalInfo = styled.section`
   margin-bottom: 10px;
-  display: flex;
 `;
 
 const Socials = styled.section`
-  display: flex;
   margin-bottom: 10px;
 `;
 
@@ -46,8 +44,13 @@ const Links = styled.section``; // Нужен был для построения
 
 const Search = styled.section`
   display: flex;
+  justify-content: center;
   margin-top: 22px;
   margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    justify-content: left;
+  }
 `;
 
 export default function() {
