@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import emodjiCheap from "./images/emoji-cheap.png";
-import emodjiFast from "./images/emoji-fast.png";
-import emodjiBest from "./images/emoji-best.png";
-
-import plane from "./images/plane.svg";
-import clock from "./images/clock.png";
-
 import list from "./list";
 
 import sort from "./images/sort.png";
+import share from "./images/share.svg";
+import ticketOpener from "./images/ticket-opener.svg";
+
+import { Details, SetAdditionalInfo } from "./AdditionalInfo";
+import SetLuggage from "./SetLuggage";
+import SetProposal from "./SetProposal";
+import SetDetails from "./SetDetails";
+import SetHeader from "./SetHeader";
+import SetLogo from "./SetLogo";
+import SetAlert from "./SetAlert";
 
 const Main = styled.section`
   display: flex;
@@ -24,7 +27,15 @@ const Main = styled.section`
   }
 `;
 
-const Ticket = styled.section``;
+const Ticket = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex-direction: unset;
+  }
+`;
 
 const Content = styled.section`
   display: flex;
@@ -35,51 +46,52 @@ const Content = styled.section`
 
   @media (min-width: 768px) {
     margin-bottom: 20px;
+    padding: 0;
+    flex-direction: unset;
   }
-`;
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  padding: 7px 0 7px 6px;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const HeaderCheap = Header.extend`
-  background: #83d40b;
-`;
-
-const HeaderFast = Header.extend`
-  background: #af7542;
-`;
-
-const HeaderBest = Header.extend`
-  background: #c279d1;
-`;
-
-const Title = styled.span`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 18px;
-  font-size: 14px;
-  color: #ffffff;
-`;
-
-const Emoji = styled.img`
-  width: 14px;
-  height: 15px;
-  margin-left: 8px;
 `;
 
 const FirstLine = styled.section`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    justify-content: baseline;
+    margin: 0;
+  }
+`;
+
+const LeftSide = styled.section`
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    flex-direction: column;
+    border-right: 1px #ddd solid;
+  }
+`;
+
+const RightSide = styled.section`
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 24px 16px;
+    flex-direction: column;
+  }
+`;
+
+const Purchase = styled.section`
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    visibility: visible;
+    padding: 5px 23px 0 23px;
+  }
 `;
 
 const Price = styled.span`
@@ -89,85 +101,71 @@ const Price = styled.span`
   line-height: normal;
   font-size: 22px;
   color: #ff9241;
-`;
 
-const Company = styled.img`
-  width: ${props => (props.logo ? "36px" : "99px")};
-  height: 36px;
-  border: ${props => (props.logo ? "1px #DDD solid" : "none")};
-  margin-left: ${props => (props.logo ? "12px" : "0")};
-  padding: ${props => (props.logo ? "4px" : "0")};
-`;
+  @media (min-width: 768px) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 18px;
+    font-size: 16px;
+    color: #ffffff;
 
-const Details = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-`;
-
-const Departure = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Arrival = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Time = styled.section``;
-
-const PeriodTime = styled.span`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 18px;
-  font-size: 14px;
-  color: #4a4a4a;
-  margin-right: 17px;
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 8px;
-    background: url(${plane}) no-repeat center;
+    &::before {
+      content: "за";
+      display: inline;
+      width: 17px;
+      height: 18px;
+      margin-right: 4px;
+    }
   }
 `;
 
-const TotalTime = styled.span`
+const Buy = styled.button`
+  visibility: hidden;
   font-family: Roboto;
   font-style: normal;
-  font-weight: normal;
-  line-height: 18px;
-  font-size: 14px;
-  color: #4a4a4a;
+  text-align: center;
+  color: #ffffff;
+  background: #ff6d00;
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 8px;
-    background: url(${clock}) no-repeat center;
+  & > ${Price} {
+    visibility: visible;
+  }
+
+  @media (min-width: 768px) {
+    visibility: visible;
+    font-weight: 500;
+    line-height: 18px;
+    font-size: 16px;
+    padding: 4px 45px;
+    margin-bottom: 8px;
+
+    &::before {
+      content: "Купить";
+      display: inline;
+    }
   }
 `;
 
-const Type = styled.span`
+const WhereToBuy = styled.span`
+  display: none;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   line-height: 18px;
-  font-size: 14px;
-  text-align: right;
-  color: #4a4a4a;
-`;
+  font-size: 12px;
+  text-align: center;
+  color: #a0b0b9;
 
-const Companies = styled.section`
-  display: flex;
+  @media (min-width: 768px) {
+    display: inline;
+  }
 `;
 
 const ScrollTop = styled.button`
@@ -213,6 +211,21 @@ const Filter = styled.button`
   }
 `;
 
+const Sort = styled.button`
+  display: none;
+  padding: 17px 24px;
+  border-radius: 10px;
+  background: url(${sort}) no-repeat center;
+  background-color: #23a9f6;
+  margin: 16px auto;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
 const ShowMoreTicket = styled.button`
   display: none;
   background: #00acde;
@@ -235,67 +248,62 @@ const ShowMoreTicket = styled.button`
   }
 `;
 
-const Sort = styled.button`
+const CompanyWrapper = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Charter = styled.button`
   display: none;
-  padding: 17px 24px;
-  border-radius: 10px;
-  background: url(${sort}) no-repeat center;
-  background-color: #23a9f6;
-  margin: 16px auto;
-  border: none;
-  cursor: pointer;
+  background: rgba(0, 0, 0, 0.0001);
+  border: 1px solid #2196f3;
+  border-radius: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 18px;
+  font-size: 10px;
+  color: #23a9f6;
+  padding: 4px 11px;
 
   @media (min-width: 768px) {
     display: block;
   }
 `;
 
-function ChangeHeader(props) {
-  if (props.type === "cheap") {
-    return (
-      <HeaderCheap>
-        <Title>Самый дешевый</Title>
-        <Emoji src={emodjiCheap} />
-      </HeaderCheap>
-    );
-  } else if (props.type === "fast") {
-    return (
-      <HeaderFast>
-        <Title>Самый быстрый</Title>
-        <Emoji src={emodjiFast} />
-      </HeaderFast>
-    );
-  } else {
-    return (
-      <HeaderBest>
-        <Title>Лучший билет</Title>
-        <Emoji src={emodjiBest} />
-      </HeaderBest>
-    );
+const ShareWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > :first-child {
+    margin-right: 14px;
   }
-}
+`;
 
-function SetHeader(props) {
-  if (props.type) {
-    return <ChangeHeader type={props.type} />;
+const Share = styled.img`
+  display: none;
+  width: 17px;
+  height: 14px;
+
+  @media (min-width: 768px) {
+    display: block;
   }
+`;
 
-  return false;
-}
+const TicketOpener = styled.div`
+  display: none;
+  background: url(${ticketOpener}) no-repeat center;
+  background-color: #edf5f7;
+  padding-left: 7px;
+  padding-right: 7px;
+  align-items: center;
+  margin-left: 15px;
 
-function SetLogo(props) {
-  const logo = props.logo;
-  if (logo.length === 2) {
-    return (
-      <Companies>
-        <Company src={props.logo[0]} logo />
-        <Company src={props.logo[1]} logo />
-      </Companies>
-    );
+  @media (min-width: 768px) {
+    display: block;
   }
-
-  return <Company src={props.logo} />;
-}
+`;
 
 export default function() {
   return (
@@ -309,32 +317,43 @@ export default function() {
             <SetHeader type={ticket.type} />
             <Content>
               <FirstLine>
-                <Price>{ticket.price}</Price>
-                <SetLogo logo={ticket.logos} />
+                <LeftSide>
+                  <SetLuggage luggage={ticket.luggage} />
+                  <SetAlert remained={ticket.remained} />
+                  <Purchase>
+                    <Buy>
+                      <Price>{ticket.price}</Price>
+                    </Buy>
+                    <WhereToBuy>{ticket.whereToBuy}</WhereToBuy>
+                    <SetProposal
+                      services={ticket.services}
+                      costs={ticket.costs}
+                      others={ticket.others}
+                    />
+                  </Purchase>
+                </LeftSide>
+                <RightSide>
+                  <CompanyWrapper>
+                    <SetLogo logo={ticket.logos} />
+                    <ShareWrapper>
+                      <Charter>Чартер</Charter>
+                      <Share src={share} />
+                    </ShareWrapper>
+                  </CompanyWrapper>
+                  <Details>
+                    <SetAdditionalInfo ticket={ticket} />
+                  </Details>
+                </RightSide>
+                <TicketOpener />
               </FirstLine>
-              <Details>
-                <Departure>
-                  <Time>
-                    <PeriodTime>{ticket.departure.periodTime}</PeriodTime>
-                    <TotalTime>{ticket.departure.totalTime}</TotalTime>
-                  </Time>
-                  <Type>{ticket.departure.type}</Type>
-                </Departure>
-                <Arrival>
-                  <Time>
-                    <PeriodTime>{ticket.arrival.periodTime}</PeriodTime>
-                    <TotalTime>{ticket.arrival.totalTime}</TotalTime>
-                  </Time>
-                  <Type>{ticket.arrival.type}</Type>
-                </Arrival>
-              </Details>
+              <SetDetails ticket={ticket} />
             </Content>
           </Ticket>
         );
       })}
       <Filter>Фильтровать</Filter>
 
-      <ShowMoreTicket>ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ!</ShowMoreTicket>
+      <ShowMoreTicket>Показать еще 10 билетов!</ShowMoreTicket>
     </Main>
   );
 }

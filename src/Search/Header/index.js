@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import arrowBack from "./images/arrow-back.png";
 
+import LogoWrapper from "../../Header/LogoWrapper";
+import Form from "../../Header/Form";
+
 const Header = styled.header`
   display: flex;
   flex-direction: row;
@@ -21,7 +24,10 @@ const Header = styled.header`
   );
 
   @media (min-width: 768px) {
-    display: none;
+    flex-direction: column;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 32px;
   }
 `;
 
@@ -32,7 +38,7 @@ const ArrowBack = styled.button`
   border: none;
 `;
 
-const Title = styled.section`
+const Info = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -58,6 +64,7 @@ const Details = styled.span`
 `;
 
 const CurrencyPicker = styled.button`
+  visibility: visible;
   background: rgba(0, 0, 0, 0.0001);
   border: 1px solid #ffffff;
   box-sizing: border-box;
@@ -79,6 +86,22 @@ const Currency = styled.span`
 const LeftSide = styled.section`
   display: flex;
   align-items: center;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const Head = styled.section`
+  visibility: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    visibility: visible;
+    width: 100%;
+  }
 `;
 
 export default function() {
@@ -86,14 +109,18 @@ export default function() {
     <Header>
       <LeftSide>
         <ArrowBack />
-        <Title>
+        <Info>
           <Route>Москва — Барселона</Route>
           <Details>24 фев — 3 март, 1 пассажир</Details>
-        </Title>
+        </Info>
       </LeftSide>
-      <CurrencyPicker>
-        <Currency>RUB</Currency>
-      </CurrencyPicker>
+      <Head>
+        <LogoWrapper search />
+        <CurrencyPicker>
+          <Currency>RUB</Currency>
+        </CurrencyPicker>
+      </Head>
+      <Form search />
     </Header>
   );
 }
