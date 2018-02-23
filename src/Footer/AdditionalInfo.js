@@ -34,7 +34,7 @@ const Body = styled.section`
   margin-left: 6px;
 
   @media (min-width: 992px) {
-    padding: 0 20%;
+    padding: 0 12%;
     display: flex;
     justify-content: space-between;
   }

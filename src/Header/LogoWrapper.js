@@ -4,16 +4,22 @@ import styled from "styled-components";
 import logo from "./images/logo.svg";
 
 const LogoWrapper = styled.section`
-  display: ${props => (props.search ? "none" : "flex")};
+  visibility: hidden;
   align-items: center;
 
   @media (min-width: 768px) {
     display: flex;
+    visibility: visible;
   }
 `;
 
 const Logo = styled.img`
-  display: flex;
+  display: ${props => (props.search ? "none" : "flex")};
+  visibility: visible;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 const Title = styled.h1`
@@ -32,10 +38,16 @@ const Title = styled.h1`
   }
 `;
 
-export default function() {
+export default function SetLogo(props) {
   return (
-    <LogoWrapper search>
-      <Logo src={logo} alt="aviasales" width="30px;" height="29px;" />
+    <LogoWrapper>
+      <Logo
+        search={props.page}
+        src={logo}
+        alt="aviasales"
+        width="30px;"
+        height="29px;"
+      />
       <Title>aviasales</Title>
     </LogoWrapper>
   );

@@ -15,7 +15,7 @@ import unknownLuggage from "./images/unknown-luggage.svg";
 
 export default [
   {
-    type: "1",
+    type: "cheap",
     price: "7 712 ₽",
     whereToBuy: "на Clickavia",
     luggage: [
@@ -27,6 +27,7 @@ export default [
       }
     ],
     logos: [russia],
+    hasCharter: true,
     departure: {
       startTime: "00:05",
       endTime: "03:05",
@@ -47,7 +48,7 @@ export default [
     }
   },
   {
-    type: "3",
+    type: "best",
     price: "8 029 ₽",
     whereToBuy: "на Билетик Аэро",
     luggage: [
@@ -58,6 +59,7 @@ export default [
       }
     ],
     logos: [nordwind],
+    hasCharter: false,
     departure: {
       startTime: "00:15",
       endTime: "03:10",
@@ -80,6 +82,7 @@ export default [
   {
     price: "8 164 ₽",
     logos: [nordwindAirlines],
+    hasCharter: true,
     whereToBuy: "на Aviakassa",
     luggage: [
       {
@@ -119,6 +122,7 @@ export default [
   {
     price: "8 240 ₽",
     logos: [redWings],
+    hasCharter: true,
     whereToBuy: "на Билетик Аэро",
     luggage: [
       {
@@ -161,6 +165,7 @@ export default [
   {
     price: "9 108 ₽",
     logos: [redWingsSmall, russiaSmall],
+    hasCharter: true,
     whereToBuy: "на Clickavia",
     luggage: [
       {
@@ -190,7 +195,7 @@ export default [
     }
   },
   {
-    type: "2",
+    type: "fast",
     price: "9 269 ₽",
     whereToBuy: "на Biletix",
     luggage: [
@@ -205,6 +210,7 @@ export default [
     costs: ["9 275 ₽", "9 587 ₽"],
     others: "4 предложения",
     logos: [fly],
+    hasCharter: true,
     departure: {
       startTime: "07:30",
       endTime: "09:50",
@@ -228,6 +234,7 @@ export default [
   {
     price: "9 485 ₽",
     logos: [russiaSmall, undefinedCompany],
+    hasCharter: true,
     whereToBuy: "на Clickavia",
     luggage: [
       {

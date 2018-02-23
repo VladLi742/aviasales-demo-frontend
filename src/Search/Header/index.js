@@ -4,7 +4,9 @@ import styled from "styled-components";
 import arrowBack from "./images/arrow-back.png";
 
 import LogoWrapper from "../../Header/LogoWrapper";
-import Form from "../../Header/Form";
+import SetForm from "../../Header/Form";
+
+import list from "./list";
 
 const Header = styled.header`
   display: flex;
@@ -104,6 +106,11 @@ const Head = styled.section`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export default function() {
   return (
     <Header>
@@ -114,13 +121,15 @@ export default function() {
           <Details>24 фев — 3 март, 1 пассажир</Details>
         </Info>
       </LeftSide>
-      <Head>
-        <LogoWrapper search />
-        <CurrencyPicker>
-          <Currency>RUB</Currency>
-        </CurrencyPicker>
-      </Head>
-      <Form search />
+      <Wrapper>
+        <Head>
+          <LogoWrapper page="search" />
+          <CurrencyPicker>
+            <Currency>RUB</Currency>
+          </CurrencyPicker>
+        </Head>
+        <SetForm page={list} />
+      </Wrapper>
     </Header>
   );
 }

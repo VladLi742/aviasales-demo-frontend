@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Row, Col } from "react-flexbox-grid";
+
+import flagRu from "./images/flag-ru.svg";
+import flagSpain from "./images/flag-spain.jpg";
 
 import krasnodar from "./images/krasnodar-sm.jpg";
 import sochiAdler from "./images/sochi-adler-sm.jpg";
@@ -17,7 +19,7 @@ const FindByPrice = styled.a`
   text-align: Right;
   color: #00bae8;
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 32px;
     font-size: 22px;
   }
@@ -43,9 +45,14 @@ const Card = styled.section`
     border-top-right-radius: 8px;
   }
 
+  @media (min-width: 768px) {
+    margin-top: 25px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
   @media (min-width: 992px) {
-    margin-right: 15px;
-    margin: 0 7.5px 30px;
+    margin-top: 30px;
   }
 `;
 
@@ -55,7 +62,6 @@ const Cards = styled.section`
   align-items: center;
 
   @media (min-width: 992px) {
-    margin: 0 200px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -78,7 +84,6 @@ const Image = styled.img`
 const Route = styled.section`
   display: flex;
   flex-direction: column;
-  min-width: 150px;
   height: 50px;
   margin: 12px;
 `;
@@ -86,7 +91,6 @@ const Route = styled.section`
 const Details = styled.section`
   display: flex;
   flex-direction: column;
-  min-width: 118px;
   height: 20px;
   margin: 12px;
 `;
@@ -102,7 +106,7 @@ const Town = styled.span`
   overflow: hidden;
   white-space: nowrap;
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     line-height: 32px;
     font-size: 22px;
   }
@@ -126,24 +130,39 @@ const Departure = styled.span`
   color: #a0b0b9;
 `;
 
+const Flag = styled.img`
+  display: none;
+  width: 30px;
+  height: 30px;
+
+  @media (min-width: 768px) {
+    display: inline;
+  }
+`;
+
+const Wrapper = styled.section`
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+`;
+
 function Destionation(props) {
   return (
     <Card>
-      <Row>
-        <Col xs={12}>
-          <Image src={props.pic} />
-          <Description>
-            <Route>
-              <Town>{props.town}</Town>
-              <Country>{props.country}</Country>
-            </Route>
-            <Details>
-              <FindByPrice>Найти от {props.price}</FindByPrice>
-              <Departure>{props.date}</Departure>
-            </Details>
-          </Description>
-        </Col>
-      </Row>
+      <Image src={props.pic} />
+      <Description>
+        <Wrapper>
+          <Flag src={props.flag} />
+          <Route>
+            <Town>{props.town}</Town>
+            <Country>{props.country}</Country>
+          </Route>
+        </Wrapper>
+        <Details>
+          <FindByPrice>Найти от {props.price}</FindByPrice>
+          <Departure>{props.date}</Departure>
+        </Details>
+      </Description>
     </Card>
   );
 }
@@ -153,6 +172,7 @@ export default function() {
     <Cards>
       <Destionation
         pic={krasnodar}
+        flag={flagRu}
         town="Краснодар"
         country="Россия"
         price="1 212 ₽"
@@ -160,6 +180,7 @@ export default function() {
       />
       <Destionation
         pic={sochiAdler}
+        flag={flagRu}
         town="Сочи (Адлер)"
         country="Россия"
         price="1 334 ₽"
@@ -167,6 +188,7 @@ export default function() {
       />
       <Destionation
         pic={petersburg}
+        flag={flagRu}
         town="Санкт-Петербург"
         country="Россия"
         price="1 508 ₽"
@@ -174,6 +196,7 @@ export default function() {
       />
       <Destionation
         pic={mineralWaters}
+        flag={flagRu}
         town="Минеральные Воды"
         country="Россия"
         price="2 074 ₽"
@@ -181,6 +204,7 @@ export default function() {
       />
       <Destionation
         pic={simferopol}
+        flag={flagRu}
         town="Симферополь (Крым)"
         country="КРЫМ"
         price="2 407 ₽"
@@ -188,6 +212,7 @@ export default function() {
       />
       <Destionation
         pic={barcelona}
+        flag={flagSpain}
         town="Барселона"
         country="ИСПАНИЯ"
         price="4 247 ₽"

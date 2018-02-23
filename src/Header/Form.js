@@ -7,6 +7,8 @@ import aero from "./images/aero.svg";
 import arrow from "./images/arrow.svg";
 import arrowBottom from "./images/arrow-bottom.svg";
 
+import DropDownCalendar from "../Search/Main/DropDownCalendar";
+
 const Form = styled.form`
   display: ${props => (props.search ? "none" : "flex")};
   justify-content: center;
@@ -19,12 +21,10 @@ const Form = styled.form`
   margin-top: 30px;
 
   @media (min-width: 768px) {
-    width: ${props => (props.search ? "100%" : "85%")};
-    margin-left: auto;
-    margin-right: auto;
     flex-direction: row;
     flex-wrap: wrap;
     display: flex;
+    align-items: baseline;
   }
 `;
 
@@ -33,48 +33,44 @@ const Field = styled.section`
   margin-top: 3px;
 
   @media (min-width: 768px) {
-    width: ${props => (props.search ? "49%" : "45%")};
+    min-width: ${props => (props.search ? "370px" : "311px")};
+    position: relative;
     margin-right: 2px;
   }
 
   @media (min-width: 992px) {
-    width: 22.5%;
-  }
-`;
-
-const Dates = styled.section`
-  width: 100%;
-
-  &:first-child {
-    margin-right: 2px;
+    min-width: 226px;
+    align-items: center;
   }
 `;
 
 const CityWrapper = styled.section`
-  padding: 18px 16px;
+  padding: 17px 16px;
   background-color: white;
-  border-top-right-radius: 4%;
+  border-top-right-radius: 4px;
 
   @media (min-width: 768px) {
-    border-top-right-radius: 0;
+    position: absolute;
+    right: 0;
+    border-top-right-radius: ${props => (props.search ? "4px" : "0")};
   }
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 18px 0 18px 16px;
+  padding: 19px 0 19px 16px;
   overflow: hidden;
   border: inherit;
   box-sizing: border-box;
 `;
 
 const TextInput = Input.extend`
-  &:nth-last-child(2) {
-    border-top-left-radius: 4px;
+  @media (min-width: 768px) {
+    border-top-left-radius: ${props => (props.radiusLeft ? "4px" : "0")};
   }
 `;
 
-const DateField = Input.extend`
+export const DateField = Input.extend`
   background: url(${calendar}) no-repeat;
   background-position-x: 85%;
   background-position-y: 50%;
@@ -87,8 +83,8 @@ const City = styled.span`
 `;
 
 const SelectPlace = styled.button`
-  width: 100%;
-  padding: 18px 0 18px 16px;
+  min-width: 308px;
+  padding: 18px 26px 18px 16px;
   overflow: hidden;
   border: inherit;
   box-sizing: border-box;
@@ -98,6 +94,9 @@ const SelectPlace = styled.button`
   border-bottom-left-radius: 4px;
   text-align: left;
   position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   &::after {
     content: "";
@@ -106,8 +105,20 @@ const SelectPlace = styled.button`
     height: 5px;
     position: absolute;
     top: 50%;
-    right: 25px;
+    right: ${props => (props.search ? "14px" : "25px")};
     background: url(${arrowBottom}) no-repeat center;
+  }
+
+  @media (min-width: 768px) {
+    min-width: ${props => (props.search ? "183px" : "311px")};
+    margin-right: ${props => (props.search ? "2px" : "0")};
+    padding-left: ${props => (props.search ? "7px" : "16px")};
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 4px;
+  }
+
+  @media (min-width: 992px) {
+    min-width: ${props => (props.search ? "212px" : "212px")};
   }
 `;
 
@@ -129,18 +140,18 @@ const Button = styled.button`
   font-size: 28px;
   background-color: #ff9241;
   color: #fff;
-  margin-top: ${props => (props.search ? "0" : "15px")};
   border: none;
   border-radius: 4px;
-  cursor: pointer;
+  margin-top: ${props => (props.search ? "0" : "15px")};
   margin-bottom: ${props => (props.search ? "0" : "88px")};
   padding-top: 14px;
   padding-bottom: 14px;
   position: relative;
+  cursor: pointer;
 
   &::after {
     content: "";
-    display: block;
+    display: ${props => (props.search ? "none" : "block")};
     width: 26px;
     height: 21px;
     background: url(${aero}) no-repeat center;
@@ -149,16 +160,24 @@ const Button = styled.button`
     right: 30px;
   }
 
+  &:hover {
+    background-color: #ffa353;
+  }
+
   @media (min-width: 768px) {
-    width: 50%;
-    font-size: 28px;
+    min-width: ${props => (props.search ? "184px" : "308px")};
+    font-size: ${props => (props.search ? "20px" : "28px")};
+    margin-top: ${props => (props.search ? "0" : "32px")};
     margin-bottom: ${props => (props.search ? "0" : "120px")};
+    border-radius: ${props => (props.search ? "0" : "4px")};
+    border-bottom-right-radius: 4px;
+    padding: ${props => (props.search ? "16px" : "14px 0")};
   }
 
   @media (min-width: 992px) {
-    width: 23%;
-    font-size: 28px;
-    margin-bottom: 255px;
+    min-width: ${props => (props.search ? "194px" : "308px")};
+    margin-bottom: ${props => (props.search ? "0" : "255px")};
+    margin-left: ${props => (props.search ? "20px" : "0")};
   }
 `;
 
@@ -171,38 +190,87 @@ const Type = styled.span`
   color: #a0b0b9;
 `;
 
-export default function SetForm(props) {
+export const Dates = Field.extend`
+  & > :first-child {
+    margin-right: 2px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 311px;
+  }
+`;
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+function SetFields(props) {
+  const { departure, arrival, place, type } = props.search;
+
   return (
     <Form search>
       <Field search>
-        <TextInput text="Москва" placeholder="Город вылета" />
+        <TextInput radiusLeft placeholder="Город вылета" />
         <CityWrapper>
-          <City>MOW</City>
+          <City>{departure.abbreviation}</City>
           <ChangeButton />
         </CityWrapper>
       </Field>
       <Field search>
         <TextInput placeholder="Город прибытия" />
-        <CityWrapper>
-          <City>BCN</City>
+        <CityWrapper search>
+          <City>{arrival.abbreviation}</City>
         </CityWrapper>
       </Field>
+      <DropDownCalendar />
       <Field search>
-        <Dates>
-          <DateField placeholder="Туда" />
-        </Dates>
-        <Dates>
-          <DateField placeholder="Обратно" />
-        </Dates>
-      </Field>
-      <Field search>
-        <SelectPlace>
-          1 пассажир, <Type>эконом</Type>
+        <SelectPlace search>
+          {place}, <Type>{type}</Type>
         </SelectPlace>
+        <Link to="/search">
+          <Button search>Найти билеты</Button>
+        </Link>
       </Field>
-      <Link to="/search">
-        <Button search>Найти билеты</Button>
-      </Link>
     </Form>
   );
+}
+
+export default function SetForm(props) {
+  if (props.page) {
+    return <SetFields search={props.page} />;
+  } else {
+    return (
+      <Wrapper>
+        <Form>
+          <Field>
+            <TextInput text="Москва" placeholder="Город вылета" />
+            <CityWrapper>
+              <City>MOW</City>
+              <ChangeButton />
+            </CityWrapper>
+          </Field>
+          <Field>
+            <TextInput placeholder="Город прибытия" />
+            <CityWrapper>
+              <City />
+            </CityWrapper>
+          </Field>
+          <Dates>
+            <DateField placeholder="Туда" />
+            <DateField placeholder="Обратно" />
+          </Dates>
+          <Field>
+            <SelectPlace>
+              1 пассажир, <Type>эконом</Type>
+            </SelectPlace>
+          </Field>
+        </Form>
+        <Link to="/search">
+          <Button>Найти билеты</Button>
+        </Link>
+      </Wrapper>
+    );
+  }
 }

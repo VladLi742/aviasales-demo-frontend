@@ -43,14 +43,14 @@ const Emoji = styled.img`
 `;
 
 function ChangeHeader(props) {
-  if (props.type === "1") {
+  if (props.type === "cheap") {
     return (
       <HeaderCheap>
         <Title>Самый дешевый</Title>
         <Emoji src={emodjiCheap} />
       </HeaderCheap>
     );
-  } else if (props.type === "2") {
+  } else if (props.type === "fast") {
     return (
       <HeaderFast>
         <Title>Самый быстрый</Title>
