@@ -1,14 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import DayPicker, { DateUtils } from "react-day-picker";
-import Helmet from "react-helmet";
+import "./daypicker.css";
+
+import enhanceWithClickOutside from "react-click-outside";
+
 import format from "date-fns/format";
 import ru from "date-fns/locale/ru";
 
 import "react-day-picker/lib/style.css";
 
-import { Dates, DateField } from "../../Header/Form";
-import startDate from "../Header/images/start-date.svg";
+import { Dates, DateField, Calendar } from "../../Header/Form";
+
+import calendar from "../../Header/images/calendar.svg";
+import clearDate from "../Header/images/clear-date.svg";
+
+const WEEKDAYS_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
 const MONTHS = [
   "Январь",
@@ -26,51 +33,163 @@ const MONTHS = [
 ];
 
 const WEEKDAYS_LONG = [
+  "Воскресенье",
   "Понедельник",
   "Вторник",
   "Среда",
   "Четверг",
   "Пятница",
-  "Суббота",
-  "Воскресенье"
+  "Суббота"
 ];
 
-const WEEKDAYS_SHORT = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+const FIRST_DAY_OF_WEEK = 1;
 
 const Wrapper = styled.section`
   display: flex;
-  margin-top: 3px;
+  position: relative;
 `;
 
-export default class DropDownCalendar extends React.Component {
+const DayPickerWrapper = styled.section`
+  position: absolute;
+  background: #fff;
+  box-shadow: 0px 0px 8px rgba(74, 74, 74, 0.2),
+    0px 2px 4px rgba(74, 74, 74, 0.2);
+  border-radius: 2px;
+  top: 3px;
+  z-index: 1;
+  max-width: 370px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Title = styled.label`
+  display: flex;
+  align-items: center;
+  padding: 15px 0 15px 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: #00b0dd;
+  }
+`;
+
+const Checkbox = styled.input`
+  width: 40px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: inherit;
+    height: inherit;
+    display: block;
+    background: #bccdd6;
+    border-radius: 100px;
+  }
+
+  &:not(:checked) {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      display: block;
+      background: #fff;
+      border-radius: 10px;
+      top: 2px;
+      left: 3px;
+    }
+  }
+
+  &:checked {
+    &::before {
+      background: #9ccc66;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      display: block;
+      background: #fff;
+      border-radius: 10px;
+      top: 2px;
+      right: 3px;
+    }
+  }
+`;
+
+const prices = {
+  24: ["43 606"],
+  25: ["43 606"],
+  26: ["41 920"],
+  27: ["42 140"],
+  28: ["42 130"]
+};
+
+const Price = {
+  fontFamily: "Roboto",
+  fontStyle: "normal",
+  fontWeight: "500",
+  lineHeight: "normal",
+  fontSize: "10px",
+  textAlign: "center",
+  color: "#00C455",
+  position: "absolute",
+  right: "10px"
+};
+
+function renderDay(day) {
+  const date = day.getDate();
+  return (
+    <div>
+      <div>{date}</div>
+      {prices[date] &&
+        prices[date].map((price, i) => (
+          <div key={i} style={Price}>
+            {price}
+          </div>
+        ))}
+    </div>
+  );
+}
+
+class DropDownCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false, from: "", to: "" };
     this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleChangeFrom = this.handleChangeFrom;
-    this.handleChangeTo = this.handleChangeTo;
   }
 
   toggleOpen = () => {
     this.setState({ isOpen: true });
   };
 
-  handleDayClick(day) {
+  handleDayClick(day, { disabled }) {
+    if (disabled) {
+      return;
+    }
     const range = DateUtils.addDayToRange(day, this.state);
     this.setState(range);
-    this.setState({ isOpen: false });
+    if (this.state.from) {
+      this.setState({ isOpen: false });
+    }
   }
 
   handleChangeFrom = e => {
-    this.setState({
-      from: e.target.value
-    });
+    this.setState({ from: e.target.value });
   };
 
   handleChangeTo = e => {
-    this.setState({
-      to: e.target.value
-    });
+    this.setState({ to: e.target.value });
+  };
+
+  ClearDate = e => {
+    this.setState({ to: "" });
   };
 
   render() {
@@ -78,141 +197,89 @@ export default class DropDownCalendar extends React.Component {
     const modifiers = { start: from, end: to };
     return (
       <Wrapper>
-        <Dates search onClick={this.toggleOpen}>
-          <DateField
-            value={
-              from
-                ? format(new Date(from), "D MMMM dd", {
-                    locale: ru
-                  })
-                : ""
-            }
-            onChange={this.setFirstDate}
-            placeholder="Туда"
-          />
-          <DateField
-            value={
-              to
-                ? format(new Date(to), "D MMMM dd", {
-                    locale: ru
-                  })
-                : ""
-            }
-            onChange={this.handleChangeTo}
-            placeholder="Обратно"
-          />
-        </Dates>
-        {this.state.isOpen && (
-          <DayPicker
-            numberOfMonths={this.props.numberOfMonths}
-            selectedDays={[from, { from, to }]}
-            modifiers={modifiers}
-            onDayClick={this.handleDayClick}
-            locale="ru"
-            months={MONTHS}
-            weekdaysLong={WEEKDAYS_LONG}
-            weekdaysShort={WEEKDAYS_SHORT}
-          />
+        {this.props.page === "search" ? (
+          <Dates search>
+            <DateField
+              onClick={this.toggleOpen}
+              value={
+                from
+                  ? format(new Date(from), "D MMMM dd", {
+                      locale: ru
+                    })
+                  : ""
+              }
+              onChange={this.setFirstDate}
+              placeholder="Туда"
+            />
+            <Calendar src={calendar} />
+            <DateField
+              onClick={this.toggleOpen}
+              value={
+                to
+                  ? format(new Date(to), "D MMMM dd", {
+                      locale: ru
+                    })
+                  : ""
+              }
+              onChange={this.handleChangeTo}
+              placeholder="Обратно"
+            />
+            <Calendar src={calendar} onClick={this.ClearDate} />
+          </Dates>
+        ) : (
+          <Dates>
+            <DateField
+              onClick={this.toggleOpen}
+              value={
+                from
+                  ? format(new Date(from), "D MMMM dd", {
+                      locale: ru
+                    })
+                  : ""
+              }
+              onChange={this.setFirstDate}
+              placeholder="Туда"
+            />
+            <Calendar src={calendar} />
+            <DateField
+              onClick={this.toggleOpen}
+              value={
+                to
+                  ? format(new Date(to), "D MMMM dd", {
+                      locale: ru
+                    })
+                  : ""
+              }
+              onChange={this.handleChangeTo}
+              placeholder="Обратно"
+            />
+            <Calendar src={calendar} onClick={this.ClearDate} />
+          </Dates>
         )}
-        <Helmet>
-          <style>{`
-  .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-    background-color: #F4F4F4 !important;
-    color: #4A4A4A;
-  }
-
-  .DayPicker {
-    display: block;
-    position: absolute;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 8px rgba(74, 74, 74, 0.2), 0px 2px 4px rgba(74, 74, 74, 0.2);
-    border-radius: 2px;
-    z-index: 1;
-    min-width: 370px;
-  }
-
-  .DayPicker-Caption {
-    text-align: center;
-  }
-
-  .DayPicker-Caption > div {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold !important;
-    line-height: 18px;
-    font-size: 14px !important;
-    text-transform: uppercase;
-    color: #4A4A4A;
-  }
-
-  .DayPicker-Weekday {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 900;
-    line-height: 18px;
-    font-size: 14px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #5B5B5C;
-  }
-
-  .DayPicker-Day {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 900;
-    line-height: 18px;
-    font-size: 16px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #4A4A4A;
-  }
-
-  .DayPicker-NavButton--prev {
-    left: 1.5rem;
-  }
-
-  .DayPicker-Day--start {
-
-  }
-
-  .DayPicker-Day--start::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: calc(100% + 13px);
-    position: absolute;
-    top: -6px;
-    left: 3px;
-    z-index: -2;
-    box-shadow: -5px 0 0 0 white;
-  }
-
-  .DayPicker-Day {
-    border-radius: 0 !important;
-  }
-  .DayPicker-Day--start {
-
-  }
-  ..DayPicker-Day--end {
-  }
-`}</style>
-        </Helmet>
+        {this.state.isOpen && (
+          <DayPickerWrapper>
+            <DayPicker
+              numberOfMonths={this.props.numberOfMonths}
+              selectedDays={[from, { from, to }]}
+              modifiers={modifiers}
+              onDayClick={this.handleDayClick}
+              locale="ru"
+              months={MONTHS}
+              weekdaysLong={WEEKDAYS_LONG}
+              weekdaysShort={WEEKDAYS_SHORT}
+              disabledDays={[{ before: new Date() }]}
+              renderDay={renderDay}
+              toMonth={new Date(2019, 8)}
+              firstDayOfWeek={FIRST_DAY_OF_WEEK}
+            />
+            <Title>
+              <Checkbox type="checkbox" />Показать цены в одну сторону
+            </Title>
+          </DayPickerWrapper>
+        )}
       </Wrapper>
     );
-
-    // handleDayClick(day, { selected }) {
-    //   if (selected) {
-    //     this.setState({ selectedDay: undefined });
-    //     return;
-    //   }
-    //   this.setState({ selectedDay: day });
-    // }
-    // <Dates search onClick={this.toggleOpen}>
-    //   <DateField value={this.state.selectedDay} placeholder="Туда" />
-    //   <DateField value={this.state.selectedDay} placeholder="Обратно" />
-    // </Dates>;
-    // {
-    //   this.state.isOpen && <DayPicker locale="ru" months={MONTHS} weekdaysLong={WEEKDAYS_LONG} weekdaysShort={WEEKDAYS_SHORT} disabledDays={[{ after: new Date(2018, 1, 0), before: new Date(2018, 1, 17) }]} onDayClick={this.handleDayClick} selectedDays={this.state.selectedDay} />;
-    // }
   }
 }
+
+export default enhanceWithClickOutside(DropDownCalendar);

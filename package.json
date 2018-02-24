@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "date-fns": "^1.29.0",
+    "formatjs": "^0.1.1",
     "lodash": "^4.17.5",
     "normalize.css": "^8.0.0",
     "rc-slider": "^8.6.0",
     "react": "^16.2.0",
+    "react-click-outside": "^3.0.1",
     "react-day-picker": "^7.0.7",
     "react-dom": "^16.2.0",
     "react-flexbox-grid": "^2.0.0",

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import calendar from "./images/calendar.svg";
 import aero from "./images/aero.svg";
 import arrow from "./images/arrow.svg";
 import arrowBottom from "./images/arrow-bottom.svg";
@@ -28,7 +27,7 @@ const Form = styled.form`
   }
 `;
 
-const Field = styled.section`
+export const Field = styled.section`
   display: flex;
   margin-top: 3px;
 
@@ -56,7 +55,7 @@ const CityWrapper = styled.section`
   }
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   width: 100%;
   padding: 19px 0 19px 16px;
   overflow: hidden;
@@ -71,11 +70,38 @@ const TextInput = Input.extend`
 `;
 
 export const DateField = Input.extend`
-  background: url(${calendar}) no-repeat;
-  background-position-x: 85%;
-  background-position-y: 50%;
   background-color: white;
   cursor: pointer;
+`;
+
+export const Calendar = styled.img`
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: 33%;
+  cursor: pointer;
+`;
+
+export const Dates = Field.extend`
+  & > ${Calendar} {
+    right: 53%;
+
+    &:nth-child(2) {
+      right: 3%;
+    }
+  }
+
+  & > :first-child {
+    margin-right: 2px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: ${props => (props.search ? "370px" : "311px")};
+  }
+
+  @media (min-width: 992px) {
+    min-width: 360px;
+  }
 `;
 
 const City = styled.span`
@@ -190,20 +216,6 @@ const Type = styled.span`
   color: #a0b0b9;
 `;
 
-export const Dates = Field.extend`
-  & > :first-child {
-    margin-right: 2px;
-  }
-
-  @media (min-width: 768px) {
-    max-width: 311px;
-  }
-
-  @media (min-width: 992px) {
-    min-width: 360px;
-  }
-`;
-
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -228,7 +240,7 @@ function SetFields(props) {
           <City>{arrival.abbreviation}</City>
         </CityWrapper>
       </Field>
-      <DropDownCalendar />
+      <DropDownCalendar page="search" />
       <Field search>
         <SelectPlace search>
           {place}, <Type>{type}</Type>
@@ -261,10 +273,7 @@ export default function SetForm(props) {
               <City />
             </CityWrapper>
           </Field>
-          <Dates>
-            <DateField placeholder="Туда" />
-            <DateField placeholder="Обратно" />
-          </Dates>
+          <DropDownCalendar />
           <Field>
             <SelectPlace>
               1 пассажир, <Type>эконом</Type>
