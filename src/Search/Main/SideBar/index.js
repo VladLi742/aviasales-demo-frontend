@@ -7,8 +7,7 @@ import arrow from "./images/arrow.svg";
 import minimized from "./images/minimized.svg";
 import plane from "./images/airplane.svg";
 
-import Slider, { Range } from "rc-slider";
-import "rc-slider/assets/index.css";
+import Slider from "./Slider";
 
 const ResetAllFilters = styled.span`
   font-family: Roboto;
@@ -40,8 +39,8 @@ const Checkbox = styled.input`
       background-color: #e1f8ff;
       border: 1px solid #00ace2;
       border-radius: 4px;
-      width: inherit;
-      height: inherit;
+      width: 16px;
+      height: 16px;
     }
   }
 `;
@@ -64,13 +63,10 @@ const SideBar = styled.section`
 `;
 
 const ResetFilters = styled.img`
-  display: ${props => (props.active ? "block" : "none")};
+  visibility: ${props => (props.active ? "visible" : "hidden")};
   width: 16px;
   height: 16px;
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
 `;
 
 const Tab = styled.section`
@@ -80,8 +76,10 @@ const Tab = styled.section`
 `;
 
 const Head = styled.section`
-  padding-bottom: 15px;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: ${props => (props.last ? "0" : "15px")};
 `;
 
 const Title = styled.span`
@@ -92,6 +90,8 @@ const Title = styled.span`
   font-size: 12px;
   text-transform: uppercase;
   color: #5b5b5c;
+  display: flex;
+  align-items: center;
 `;
 
 const DropDownArrow = styled.img`
@@ -102,13 +102,13 @@ const DropDownArrow = styled.img`
 `;
 
 const Content = styled.section`
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 `;
 
 const Field = styled.section`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${props => (props.slider ? "center" : "space-between")};
 `;
 
 const Label = styled.section`
@@ -142,8 +142,8 @@ const SubTitle = styled.section`
   line-height: 18px;
   font-size: 12px;
   color: #323333;
-  margin-bottom: 25px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 5px;
 `;
 
 const Departure = styled.span``;
@@ -187,13 +187,25 @@ const Description = styled.p`
   color: #4a4a4a;
 `;
 
+const Сount = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #a0b0b9;
+  margin-left: 12px;
+`;
+
 export default function() {
   return (
     <SideBar>
       <Tab>
         <Head>
-          <DropDownArrow src={arrow} />
-          <Title>Пересадки</Title>
+          <Title>
+            <DropDownArrow src={arrow} />Пересадки
+          </Title>
           <ResetFilters src={reset} active />
         </Head>
 
@@ -237,8 +249,10 @@ export default function() {
 
       <Tab>
         <Head>
-          <DropDownArrow src={arrow} />
-          <Title>Время вылета и прибытия</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={arrow} />Время вылета и прибытия
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
         <Content>
           <SubTitle>
@@ -255,9 +269,8 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
           <Field>
             <Details>
@@ -268,9 +281,8 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
 
           <SubTitle>
@@ -287,9 +299,8 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
           <Field>
             <Details>
@@ -300,31 +311,36 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
         </Content>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Багаж</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Багаж
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Длительность пересадки</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Длительность пересадки
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Время в пути</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Время в пути
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
         <Content>
           <SubTitle>
@@ -340,9 +356,8 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
           <SubTitle>
             <Departure>Барселона</Departure>
@@ -357,17 +372,19 @@ export default function() {
               </Time>
             </Details>
           </Field>
-          <Field>
+          <Field slider>
             <Slider />
-            <Range />
           </Field>
         </Content>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={arrow} />
-          <Title>Авиакомпании</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={arrow} />Авиакомпании
+            <Сount>43</Сount>
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
         <Content>
           <Field>
@@ -499,29 +516,36 @@ export default function() {
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Аэропорты</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Аэропорты
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Аэропорт пересадки</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Аэропорт пересадки
+            <Сount>71</Сount>
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
       </Tab>
 
       <Tab>
         <Head>
-          <DropDownArrow src={minimized} minimized />
-          <Title>Агенства</Title> <ResetFilters src={reset} />
+          <Title>
+            <DropDownArrow src={minimized} minimized />Агенства<Сount>26</Сount>
+          </Title>
+          <ResetFilters src={reset} />
         </Head>
       </Tab>
 
       <Tab>
-        <Head>
+        <Head last>
           <ResetAllFilters>Сбросить все фильтры</ResetAllFilters>
-          <ResetAllFilters src={reset} active />
+          <ResetFilters src={reset} active />
         </Head>
       </Tab>
     </SideBar>

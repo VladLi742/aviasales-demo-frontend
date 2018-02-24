@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DayPicker, { DateUtils } from "react-day-picker";
 import Helmet from "react-helmet";
-import { format, parse } from "date-fns";
+import format from "date-fns/format";
 import ru from "date-fns/locale/ru";
 
 import "react-day-picker/lib/style.css";
@@ -45,18 +45,15 @@ const Wrapper = styled.section`
 export default class DropDownCalendar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { isOpen: false, from: "", to: "" };
     this.handleDayClick = this.handleDayClick.bind(this);
-    this.state = this.getInitialState();
-    this.state = { isOpen: false };
+    this.handleChangeFrom = this.handleChangeFrom;
+    this.handleChangeTo = this.handleChangeTo;
   }
 
   toggleOpen = () => {
     this.setState({ isOpen: true });
   };
-
-  getInitialState() {
-    return { from: undefined, to: undefined };
-  }
 
   handleDayClick(day) {
     const range = DateUtils.addDayToRange(day, this.state);
@@ -64,27 +61,15 @@ export default class DropDownCalendar extends React.Component {
     this.setState({ isOpen: false });
   }
 
-  // handleDayClick(day, { selected }) {
-  //     if (selected) {
-  //       this.setState({ selectedDay: undefined });
-  //       return;
-  //     }
-  //     this.setState({ selectedDay: day });
-  //   }
-
-  setFirstDate = () => {
+  handleChangeFrom = e => {
     this.setState({
-      from: format(new Date(this.from), "D MMMM dd", {
-        locale: ru
-      })
+      from: e.target.value
     });
   };
 
-  setEndDate = () => {
+  handleChangeTo = e => {
     this.setState({
-      to: format(new Date(this.to), "D MMMM dd", {
-        locale: ru
-      })
+      to: e.target.value
     });
   };
 
@@ -95,13 +80,25 @@ export default class DropDownCalendar extends React.Component {
       <Wrapper>
         <Dates search onClick={this.toggleOpen}>
           <DateField
+            value={
+              from
+                ? format(new Date(from), "D MMMM dd", {
+                    locale: ru
+                  })
+                : ""
+            }
             onChange={this.setFirstDate}
-            value={from}
             placeholder="Туда"
           />
           <DateField
-            onChange={this.setSecondDate}
-            value={to}
+            value={
+              to
+                ? format(new Date(to), "D MMMM dd", {
+                    locale: ru
+                  })
+                : ""
+            }
+            onChange={this.handleChangeTo}
             placeholder="Обратно"
           />
         </Dates>

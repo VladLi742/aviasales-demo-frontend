@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import sort from "./images/sort.png";
 
-import SideBar from "./Sidebar";
+import SideBar from "./SideBar";
 import Tickets from "./Tickets";
 
 const Main = styled.section`
@@ -79,6 +79,10 @@ const Sort = styled.button`
 const Wrapper = styled.section`
   display: flex;
   justify-content: center;
+
+  @media (min-width: 1200px) {
+    margin-right: 200px;
+  }
 `;
 
 export default function() {

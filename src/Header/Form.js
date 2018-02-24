@@ -198,6 +198,10 @@ export const Dates = Field.extend`
   @media (min-width: 768px) {
     max-width: 311px;
   }
+
+  @media (min-width: 992px) {
+    min-width: 360px;
+  }
 `;
 
 const Wrapper = styled.section`
