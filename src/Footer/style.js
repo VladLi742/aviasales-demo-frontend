@@ -14,4 +14,8 @@ export const Link = styled.a`
   &:hover {
     color: #fd8a27;
   }
+
+  @media (min-width: 768px) {
+    margin-top: 10px;
+  }
 `;

@@ -6,19 +6,29 @@ import windowsPhone from "./images/windows-phone.png";
 
 const Apps = styled.section`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &:nth-last-child(2) {
     margin-right: 0;
   }
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 
 const App = styled.a`
-  margin-right: 10px;
   text-decoration: none;
   margin-top: 10px;
 
   &:nth-last-child(2) {
     margin-right: 0;
+  }
+
+  @media (min-width: 768px) {
+    margin-right: 10px;
   }
 `;
 

@@ -1,28 +1,23 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import "normalize.css";
 
-import Header from "./Header/";
-import TopDestionations from "./TopDestinations/";
-import BestPrices from "./BestPrices/";
-import Discounts from "./Discounts/";
-import Sales from "./Sales/";
-import Articles from "./Articles/";
-import MobileApp from "./MobileApp/";
-import Footer from "./Footer/";
+import Header from "./Header";
+import Home from "./Home/";
+import Search from "./Search/";
+import Footer from "./Footer";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <TopDestionations />
-        <BestPrices />
-        <Discounts />
-        <Sales />
-        <Articles />
-        <MobileApp />
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route path="/" exact component={Header} />
+          <Route path="/" exact component={Home} />
+          <Route path="/search" exact component={Search} />
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
