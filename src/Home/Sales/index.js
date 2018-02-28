@@ -17,16 +17,16 @@ const Body = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px 205px 30px;
+    padding: 5px 165px 30px;
   }
 `;
 
 const Title = styled.h2`
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 33px;
-  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 42px;
+  font-size: 30px;
   color: #fff;
   padding-left: 7px;
   display: flex;
@@ -42,6 +42,8 @@ const Offer = styled.section`
   margin-bottom: 6px;
 
   @media (min-width: 768px) {
+    min-width: 240px;
+
     &:nth-child(2) {
       margin-left: 15px;
       margin-right: 15px;
@@ -49,8 +51,8 @@ const Offer = styled.section`
   }
 
   @media (min-width: 992px) {
-    width: 297px;
-    height: 270px;
+    max-width: 297px;
+    max-height: 270px;
 
     &:nth-child(2) {
       margin-left: 70px;
@@ -74,6 +76,11 @@ const Offers = styled.section`
     flex-wrap: nowrap;
     flex-direction: row;
   }
+
+  @media (min-width: 992px) {
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
 `;
 
 const Header = styled.section`
@@ -83,11 +90,11 @@ const Header = styled.section`
   align-items: center;
   padding: 22px 15px 21px 16px;
   box-sizing: border-box;
-  min-height: 76px;
+  max-height: 63px;
 `;
 
 const Name = styled.span`
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
@@ -103,6 +110,10 @@ const Main = styled.section`
   display: flex;
   flex-wrap: wrap;
   position: relative;
+
+  @media (min-width: 768px) {
+    max-height: 215px;
+  }
 `;
 
 const CompanyLogo = styled.img`
@@ -179,7 +190,9 @@ const ReadMore = styled.button`
   line-height: 20px;
   font-size: 16px;
   text-align: center;
-  margin: 22px 8px 20px;
+  margin: 0 8px 20px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   width: 100%;
   cursor: pointer;
   color: #d93533;
@@ -224,7 +237,6 @@ const Notes = styled.section`
     width: 100%;
     padding: 0;
     justify-content: space-between;
-    margin-top: 45px;
   }
 `;
 
@@ -239,7 +251,15 @@ const Content = styled.section`
   }
 `;
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  @media (min-width: 992px) {
+    min-width: 975px;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 1100px;
+  }
+`;
 
 export default function() {
   return (

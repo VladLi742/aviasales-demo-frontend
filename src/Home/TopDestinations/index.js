@@ -94,12 +94,15 @@ const Categories = styled.section`
 
   @media (min-width: 768px) {
     justify-content: space-between;
-    width: 75%;
+    min-width: 80%;
   }
 
   @media (min-width: 992px) {
-    justify-content: space-around;
-    width: 40%;
+    min-width: 57%;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 42%;
   }
 `;
 

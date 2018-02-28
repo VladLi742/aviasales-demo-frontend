@@ -18,8 +18,7 @@ export default [
     pic: lufthansa,
     price: "20 680 ₽",
     days: "19 дней",
-    promoText:
-      "Из Москвы в США от 20680 рублей! Специальное предложение от авиакомпании Lufthansa"
+    promoText: "Специальное предложение от авиакомпании Lufthansa"
   },
   {
     id: 3,
@@ -28,7 +27,6 @@ export default [
     pic: lufthansa,
     price: "20 360 ₽",
     days: "19 дней",
-    promoText:
-      "Из Москвы в США от 22360 рублей! Специальное предложение от авиакомпании Lufthansa"
+    promoText: "Специальное предложение от авиакомпании Lufthansa"
   }
 ];

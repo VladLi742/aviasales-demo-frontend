@@ -17,9 +17,9 @@ const Header = styled.header`
   padding: 6px;
   box-sizing: border-box;
 
-  @media (min-width: 992px) {
-    padding-left: 98px;
-    padding-right: 98px;
+  @media (min-width: 1200px) {
+    padding-left: 100px;
+    padding-right: 100px;
   }
 `;
 

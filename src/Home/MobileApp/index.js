@@ -1,4 +1,5 @@
 import React from "react";
+import { Grid, Row, Col } from "react-flexbox-grid";
 import styled from "styled-components";
 
 import raiting from "./images/raiting.svg";
@@ -13,73 +14,24 @@ const Body = styled.section`
   padding-top: 24px;
   position: relative;
 
-  @media (min-width: 992px) {
-    padding-top: 0;
-    padding-left: 40%;
-    min-height: 300px;
-  }
-`;
-
-const Title = styled.h3`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  font-size: 24px;
-  text-align: center;
-  margin: 0 12px 0;
-
   @media (min-width: 768px) {
-    line-height: 40px;
-    font-size: 32px;
-    text-align: left;
-    margin: 0;
-    margin-right: 45px;
+    margin-top: 10px;
+    padding-top: 46px;
   }
 
   @media (min-width: 992px) {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 40px;
-    font-size: 32px;
-    margin-top: 55px;
-  }
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    padding-left: 260px;
-    margin-top: 20px;
-  }
-
-  @media (min-width: 992px) {
-    padding-left: 15%;
-    padding-left: 0;
     margin-top: 0;
-    align-items: baseline;
+    padding-top: 66px;
   }
 `;
 
-const Raiting = styled.img`
-  width: 70px;
-  height: 10px;
-  margin-right: 10px;
-`;
+const PhoneWrapper = styled.section`
+  position: relative;
+  padding-bottom: 25px;
 
-const RaitingTitle = styled.h3`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 20px;
-  font-size: 14px;
-  margin-top: 0;
-  margin-bottom: 0;
+  @media (min-width: 1200px) {
+    padding-bottom: 43px;
+  }
 `;
 
 const Phone = styled.img`
@@ -87,129 +39,134 @@ const Phone = styled.img`
   height: 213px;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -10px;
 
   @media (min-width: 768px) {
     width: 237px;
     height: 312px;
   }
 
-  @media (min-width: 992px) {
-    position: absolute;
-    left: 25%;
-  }
-`;
-
-const ListOS = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 170px;
-  padding-top: 55px;
-  padding-bottom: 55px;
-
-  @media (min-width: 768px) {
-    padding-left: 260px;
-    padding-top: 40px;
-  }
-
-  @media (min-width: 992px) {
-    padding-left: 0;
-    padding-top: 0;
-    padding-left: 0;
+  @media (min-width: 1200px) {
+    width: 234px;
+    height: 308px;
+    left: 100px;
   }
 `;
 
 const OS = styled.section`
   display: flex;
-  flex-wrap: wrap;
-  margin-right: 20px;
-  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 25px;
 
   @media (min-width: 768px) {
-    &:nth-child(2)::before {
-      content: "";
-      position: relative;
-      right: 10px;
-      border-left: 1px white solid;
-      border-right: 1px white solid;
-      mix-blend-mode: normal;
-      opacity: 0.5;
-    }
+    display: inline-block;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    margin-right: 20px;
+  }
 
-    &:nth-child(2)::after {
-      content: "";
-      position: relative;
-      left: 10px;
-      border-left: 1px white solid;
-      border-right: 1px white solid;
-      mix-blend-mode: normal;
-      opacity: 0.5;
+  &:last-child {
+    @media (min-width: 768px) {
+      margin-right: 0;
+      border: none;
     }
   }
 `;
 
-const OSTitle = styled.h3`
+const OSTitle = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   line-height: 24px;
   font-size: 14px;
-  margin-top: 0;
-  margin-bottom: 0;
   cursor: pointer;
+  padding-left: 10px;
 
   &:hover {
     text-decoration: underline;
   }
-`;
-
-const Stars = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  margin-top: 20px;
 
   @media (min-width: 768px) {
-    justify-content: unset;
-  }
-
-  @media (min-width: 992px) {
-    justify-content: center;
-    padding-right: 29%;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 20px;
   }
 `;
 
 const OSIcon = styled.img`
   width: 18px;
   height: 23px;
-  margin-right: 10px;
+
+  @media (min-width: 768px) {
+    position: absolute;
+  }
+`;
+
+const Title1 = styled.h2`
+  font-weight: 500;
+  line-height: normal;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 0;
+
+  @media (min-width: 768px) {
+    line-height: 40px;
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+`;
+
+const Rating = styled.div`
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 56px;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    background: url(${raiting});
+    width: 70px;
+    height: 10px;
+    margin-right: 12px;
+  }
+  @media (min-width: 768px) {
+    text-align: left;
+    margin-bottom: 40px;
+  }
 `;
 
 export default function() {
   return (
     <Body>
-      <Phone src={mobileApp} />
-      <Header>
-        <Title>Скачай мобильное приложение Aviasales.ru</Title>
-        <Stars>
-          <Raiting src={raiting} />
-          <RaitingTitle>Более 103 000 оценок</RaitingTitle>
-        </Stars>
-      </Header>
-      <ListOS>
-        <OS>
-          <OSIcon src={apple} />
-          <OSTitle>iPhone или iPad</OSTitle>
-        </OS>
-        <OS>
-          <OSIcon src={android} />
-          <OSTitle>Android</OSTitle>
-        </OS>
-        <OS>
-          <OSIcon src={winPhone} />
-          <OSTitle>Windows Phone</OSTitle>
-        </OS>
-      </ListOS>
+      <Grid>
+        <Row start="md">
+          <Col xs={12} md={8} mdOffset={4}>
+            <Title1>Скачай мобильное приложение Aviasales.ru</Title1>
+            <Rating>Более 103 000 оценок</Rating>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} xsOffset={6} md={8} mdOffset={4}>
+            <OS>
+              <OSIcon src={apple} />
+              <OSTitle>iPhone или iPad</OSTitle>
+            </OS>
+            <OS>
+              <OSIcon src={android} />
+              <OSTitle>Android</OSTitle>
+            </OS>
+            <OS>
+              <OSIcon src={winPhone} />
+              <OSTitle>Windows Phone</OSTitle>
+            </OS>
+          </Col>
+        </Row>
+        <PhoneWrapper>
+          <Phone src={mobileApp} />
+        </PhoneWrapper>
+      </Grid>
     </Body>
   );
 }

@@ -31,6 +31,10 @@ const Header = styled.header`
     padding-right: 8px;
     padding-bottom: 32px;
   }
+
+  @media (min-width: 992px) {
+    padding-bottom: 20px;
+  }
 `;
 
 const ArrowBack = styled.button`

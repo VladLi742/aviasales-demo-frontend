@@ -13,11 +13,15 @@ import undefinedCompany from "./images/undefined-company.jpg";
 import Subscription from "./Subscription";
 
 const Wrapper = styled.section`
-  display: flex;
+  display: none;
   justify-content: center;
   position: relative;
   align-items: center;
   margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 const Slide = styled.section`
@@ -104,11 +108,15 @@ const Arrow = styled.picture`
 
 const PrevSlide = Arrow.extend`
   top: 50%;
-  left: 5%;
+  left: 2%;
   z-index: 1;
 
   @media (min-width: 992px) {
-    left: 20%;
+    left: 5%;
+  }
+
+  @media (min-width: 1200px) {
+    left: 13%;
   }
 `;
 
@@ -116,10 +124,14 @@ const NextSlide = Arrow.extend`
   transition: rotate(180deg);
   transform: rotate(180deg);
   top: 50%;
-  right: 10%;
+  right: 2%;
 
   @media (min-width: 992px) {
-    right: 20%;
+    right: 5%;
+  }
+
+  @media (min-width: 1200px) {
+    right: 13%;
   }
 `;
 

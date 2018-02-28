@@ -46,12 +46,12 @@ const Card = styled.section`
   }
 
   @media (min-width: 768px) {
-    margin-top: 25px;
-    margin-left: 8px;
-    margin-right: 8px;
+    max-width: 624px;
+    margin: 25px 8px 15px;
   }
 
   @media (min-width: 992px) {
+    max-width: 512px;
     margin-top: 30px;
   }
 `;
@@ -71,6 +71,10 @@ const Cards = styled.section`
 const Description = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (min-width: 768px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Image = styled.img`
@@ -86,17 +90,18 @@ const Route = styled.section`
   flex-direction: column;
   height: 50px;
   margin: 12px;
+  margin-bottom: 0;
 `;
 
 const Details = styled.section`
   display: flex;
   flex-direction: column;
-  height: 20px;
+  min-height: 20px;
   margin: 12px;
 `;
 
 const Town = styled.span`
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-size: 16px;
   font-weight: bold;
   line-height: 20px;
@@ -113,7 +118,7 @@ const Town = styled.span`
 `;
 
 const Country = styled.span`
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   line-height: 20px;
@@ -122,7 +127,7 @@ const Country = styled.span`
 `;
 
 const Departure = styled.span`
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-size: 12px;
   font-weight: normal;
   line-height: 20px;
@@ -143,7 +148,10 @@ const Flag = styled.img`
 const Wrapper = styled.section`
   display: flex;
   align-items: center;
-  margin-left: 20px;
+
+  @media (min-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 function Destionation(props) {

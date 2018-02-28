@@ -10,7 +10,6 @@ import yerevanList from "./yerevan-list";
 import kishinevList from "./kishinev-list";
 
 const Directions = styled.section`
-  width: 100%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -18,8 +17,13 @@ const Directions = styled.section`
   flex-wrap: wrap;
   justify-content: center;
 
-  @media (min-width: 768px) {
-    width: 90%;
+  @media (min-width: 992px) {
+    min-width: 97%;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 72%;
   }
 `;
 
@@ -51,7 +55,7 @@ const Country = styled.span`
 
 const From = styled.span`
   display: flex;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-size: 16px;
   font-weight: Regular;
   line-height: 20px;
@@ -65,7 +69,7 @@ const From = styled.span`
 
 const Price = styled.span`
   display: flex;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto
   font-size: 16px;
   font-weight: Regular;
   line-height: 20px;
@@ -101,8 +105,7 @@ const Direction = styled.section`
   width: 100%;
 
   @media (min-width: 992px) {
-    width: 300px;
-    margin-right: 45px;
+    max-width: 300px;
   }
 `;
 

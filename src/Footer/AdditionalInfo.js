@@ -17,10 +17,59 @@ const LinkWrapper = styled.section`
 
 const AdditionalInfo = styled.section`
   margin-bottom: 10px;
+
+  @media (min-width: 992px) {
+    max-width: 600px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: unset;
+  }
 `;
 
 const Socials = styled.section`
   margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    margin-bottom: 0;
+  }
+`;
+
+const Social = styled.section`
+  display: inline-block;
+
+  @media (min-width: 768px) {
+    margin-right: 30px;
+  }
+`;
+
+const FirstLine = styled.section`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    justify-content: unset;
+    margin-bottom: 0;
+  }
+`;
+
+const SecondLine = styled.section`
+  display: flex;
+  justify-content: space-between;
+
+  & > ${Social}:last-child {
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    justify-content: unset;
+
+    & > ${Social}:last-child {
+      display: none;
+    }
+  }
 `;
 
 const Icon = styled.img`
@@ -31,10 +80,17 @@ const Icon = styled.img`
 const Body = styled.section`
   margin: 0;
   margin-bottom: 5px;
-  margin-left: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
 
   @media (min-width: 992px) {
-    padding: 0 12%;
+    padding: 0 1%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 0 11%;
     display: flex;
     justify-content: space-between;
   }
@@ -46,10 +102,17 @@ const Search = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 22px;
-  margin-bottom: 16px;
+
+  & > ${Link} {
+    margin-bottom: 0;
+  }
 
   @media (min-width: 768px) {
     justify-content: left;
+
+    & > ${Link} {
+      margin-bottom: 15px;
+    }
   }
 `;
 
@@ -81,31 +144,40 @@ export default function() {
           </LinkWrapper>
         </AdditionalInfo>
         <Socials>
-          <LinkWrapper>
-            <Link>
-              <Icon src={vk} />Вконтакте
-            </Link>
-          </LinkWrapper>
-          <LinkWrapper>
-            <Link>
-              <Icon src={facebook} />Фейсбук
-            </Link>
-          </LinkWrapper>
-          <LinkWrapper>
-            <Link>
-              <Icon src={instagram} />Инстаграм
-            </Link>
-          </LinkWrapper>
-          <LinkWrapper>
-            <Link>
-              <Icon src={twitter} />Твиттер
-            </Link>
-          </LinkWrapper>
-          <LinkWrapper>
-            <Link>
-              <Icon src={viber} />Вайбер
-            </Link>
-          </LinkWrapper>
+          <FirstLine>
+            <Social>
+              <Link>
+                <Icon src={vk} />Вконтакте
+              </Link>
+            </Social>
+            <Social>
+              <Link>
+                <Icon src={facebook} />Фейсбук
+              </Link>
+            </Social>
+            <Social>
+              <Link>
+                <Icon src={instagram} />Инстаграм
+              </Link>
+            </Social>
+          </FirstLine>
+          <SecondLine>
+            <Social>
+              <Link>
+                <Icon src={twitter} />Твиттер
+              </Link>
+            </Social>
+            <Social>
+              <Link>
+                <Icon src={viber} />Вайбер
+              </Link>
+            </Social>
+            <Social>
+              <Link>
+                <Icon src={viber} />Вайбер
+              </Link>
+            </Social>
+          </SecondLine>
         </Socials>
         <Search>
           <Link href="#">Поиск и бронирование отелей</Link>

@@ -97,9 +97,16 @@ export const Dates = Field.extend`
 
   @media (min-width: 768px) {
     max-width: ${props => (props.search ? "370px" : "311px")};
+    position: relative;
+    right: ${props => (props.search ? "1px" : "0")};
   }
 
   @media (min-width: 992px) {
+    max-width: 320px;
+    right: unset;
+  }
+
+  @media (min-width: 1200px) {
     min-width: 360px;
   }
 `;
@@ -141,10 +148,13 @@ const SelectPlace = styled.button`
     padding-left: ${props => (props.search ? "7px" : "16px")};
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 4px;
+    position: relative;
+    right: ${props => (props.search ? "1px" : "0")};
   }
 
   @media (min-width: 992px) {
     min-width: ${props => (props.search ? "212px" : "212px")};
+    right: unset;
   }
 `;
 
@@ -175,17 +185,6 @@ const Button = styled.button`
   position: relative;
   cursor: pointer;
 
-  &::after {
-    content: "";
-    display: ${props => (props.search ? "none" : "block")};
-    width: 26px;
-    height: 21px;
-    background: url(${aero}) no-repeat center;
-    position: absolute;
-    top: 21px;
-    right: 30px;
-  }
-
   &:hover {
     background-color: #ffa353;
   }
@@ -202,9 +201,21 @@ const Button = styled.button`
 
   @media (min-width: 992px) {
     min-width: ${props => (props.search ? "194px" : "308px")};
+    margin-top: ${props => (props.search ? "10px" : "30px")};
     margin-bottom: ${props => (props.search ? "0" : "255px")};
     margin-left: ${props => (props.search ? "20px" : "0")};
   }
+
+  @media (min-width: 1200px) {
+    min-width: ${props => (props.search ? "194px" : "308px")};
+    margin-top: ${props => (props.search ? "0" : "50px")};
+  }
+`;
+
+const Plane = styled.img`
+  display: ${props => (props.search ? "none" : "inline")};
+  width: 26px;
+  height: 21px;
 `;
 
 const Type = styled.span`
@@ -220,6 +231,17 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const ButtonLink = styled(Link)`
+  position: relative;
+  top: 2px;
+  right: 1px;
+
+  @media (mid-width: 992px) {
+    top: unset;
+    right: unset;
+  }
 `;
 
 function SetFields(props) {
@@ -241,14 +263,12 @@ function SetFields(props) {
         </CityWrapper>
       </Field>
       <DropDownCalendar page="search" />
-      <Field search>
-        <SelectPlace search>
-          {place}, <Type>{type}</Type>
-        </SelectPlace>
-        <Link to="/search">
-          <Button search>Найти билеты</Button>
-        </Link>
-      </Field>
+      <SelectPlace search>
+        {place}, <Type>{type}</Type>
+      </SelectPlace>
+      <ButtonLink to="/search">
+        <Button search>Найти билеты</Button>
+      </ButtonLink>
     </Form>
   );
 }
@@ -280,9 +300,11 @@ export default function SetForm(props) {
             </SelectPlace>
           </Field>
         </Form>
-        <Link to="/search">
-          <Button>Найти билеты</Button>
-        </Link>
+        <ButtonLink to="/search">
+          <Button>
+            Найти билеты <Plane src={aero} />
+          </Button>
+        </ButtonLink>
       </Wrapper>
     );
   }

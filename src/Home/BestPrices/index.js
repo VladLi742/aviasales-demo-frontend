@@ -54,13 +54,20 @@ const PromoText = styled.p`
   font-weight: normal;
   line-height: 24px;
   font-size: 16px;
-  margin: 40px auto 0;
+  margin: 40px 3% 0;
   text-align: center;
-  padding: 2px 10px;
   box-sizing: border-box;
 
   @media (min-width: 768px) {
     line-height: 26px;
+  }
+
+  @media (min-width: 992px) {
+    margin: 40px 18% 0;
+  }
+
+  @media (min-width: 1200px) {
+    margin: 40px 28% 0;
   }
 `;
 

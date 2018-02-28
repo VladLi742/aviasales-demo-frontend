@@ -33,7 +33,7 @@ const ScrollTop = styled.button`
   font-size: 14px;
   text-align: center;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #fff;
   cursor: pointer;
 
   @media (min-width: 768px) {
@@ -50,7 +50,7 @@ const Filter = styled.button`
   line-height: normal;
   font-size: 16px;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
   padding: 10px 0;
   margin: 15px 85px;
   border: none;

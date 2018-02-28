@@ -12,14 +12,20 @@ const List = styled.ul`
   border-bottom: 1px solid #e0e6e8;
   margin-top: 32px;
   margin-bottom: 24px;
+  padding: 6px;
 
   @media (min-width: 768px) {
     margin-top: 40px;
   }
 
   @media (min-width: 992px) {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 11%;
+    margin-right: 11%;
   }
 `;
 

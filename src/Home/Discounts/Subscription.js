@@ -35,6 +35,7 @@ const Wrapper = styled.section`
   @media (min-width: 992px) {
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-evenly;
   }
 `;
 
@@ -62,7 +63,6 @@ const Description = styled.span`
   text-align: center;
   color: #5c5c5c;
   margin: 0;
-  width: 61%;
 
   @media (min-width: 992px) {
     text-align: left;
@@ -75,6 +75,7 @@ const FirstBlock = styled.section`
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 20px;
+  max-width: 355px;
 
   @media (min-width: 992px) {
     margin-bottom: 0;
@@ -85,18 +86,21 @@ const FirstBlock = styled.section`
 const SecondBLock = styled.section`
   display: flex;
   flex-direction: column;
-  width: 75%;
   text-align: center;
 
   @media (min-width: 992px) {
     flex-direction: row;
-    width: 32%;
+    max-width: 535px;
   }
 `;
 
 const ShareIcons = styled.section`
   margin-right: 15px;
   margin-bottom: 10px;
+
+  @media (min-width: 992px) {
+    display: flex;
+  }
 `;
 
 const Icon = styled.picture`
@@ -106,7 +110,9 @@ const Icon = styled.picture`
   margin-right: 3px;
 `;
 
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+`;
 
 const Email = styled.input`
   background: #ffffff;

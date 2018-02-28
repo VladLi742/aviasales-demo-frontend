@@ -135,7 +135,7 @@ const Buy = styled.button`
     font-weight: 500;
     line-height: 18px;
     font-size: 16px;
-    padding: 4px 45px;
+    padding: 4px 40px;
     margin-bottom: 8px;
 
     &::before {
